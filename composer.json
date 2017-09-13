@@ -6,7 +6,6 @@
     "type": "project",
     "require": {
         "php": ">=7.0.0",
-        "arcanedev/log-viewer": "^4.4",
         "barryvdh/laravel-ide-helper": "^2.4",
         "barryvdh/laravel-translation-manager": "^0.4.0",
         "edvinaskrucas/settings": "^2.0",

@@ -58,17 +58,17 @@ class LoginController extends Controller
      * @param  [type]                   $user    [description]
      * @return [type]                            [description]
      */
-    protected function authenticated(Request $request)
+    protected function authenticated(Request $request,$user)
     {
         // 缓存用户权限
-        //dd($request->input(['username']));
-        if (Auth::attempt(['name' => $request->input(['username']), 'password' => $request->input(['password'])])) {
-            // 认证通过...
-            setUserPermissions(Auth::guard()->user());
-
-            return redirect()->intended($this->redirectPath());
-        }
-        //        setUserPermissions($user);
+//        //dd($request->input(['username']));
+//        if (Auth::attempt(['name' => $request->input(['username']), 'password' => $request->input(['password'])])) {
+//            // 认证通过...
+//            setUserPermissions(Auth::guard()->user());
+//
+//            return redirect()->intended($this->redirectPath());
+//        }
+                setUserPermissions($user);
         //var_dump($this->redirectPath());exit;
         return redirect()->intended($this->redirectPath());
     }

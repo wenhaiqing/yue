@@ -140,21 +140,24 @@ if(!function_exists('haspermission')){
             
             $user = auth()->user();
             $userPermissions =  getCurrentPermission($user);
+			if($userPermissions){
+				$check = in_array($permission, $userPermissions['permissions']);
 
-            $check = in_array($permission, $userPermissions['permissions']);
+				if (in_array('admin', $userPermissions['roles']) && !$check) {
 
-            if (in_array('admin', $userPermissions['roles']) && !$check) {
-                $newPermission = \App\Models\Permission::firstOrCreate([
-                    'slug' => $permission,
-                ],[
-                    'name' => $permission,
-                    'description' => $permission,
-                ]);
-                $role = \App\Models\Role::where('slug', 'admin')->first();
-                $role->attachPermission($newPermission);
-                setUserPermissions($user);
-                $check = true;
-            }
+					$newPermission = \App\Models\Permission::firstOrCreate([
+						'slug' => $permission,
+					],[
+						'name' => $permission,
+						'description' => $permission,
+					]);
+					$role = \App\Models\Role::where('slug', 'admin')->first();
+					$role->attachPermission($newPermission);
+					setUserPermissions($user);
+					$check = true;
+				}
+			}
+
         }
         return $check;
 	}

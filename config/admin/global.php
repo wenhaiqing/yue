@@ -1,7 +1,7 @@
 <?php
 return [
 	// 自定义用户名
-	'username' => 'username',
+	'username' => 'name',
 	// 默认主题
 	'theme' => 'default',
 	// 创建 service 文件配置
