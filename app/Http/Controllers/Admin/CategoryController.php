@@ -4,13 +4,14 @@ namespace App\Http\Controllers\Admin;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use App\Services\Admin\PermissionService;
-use App\Http\Requests\Admin\PermissionRequest;
-class PermissionController extends BaseController
+use App\Services\Admin\CategoryService;
+use App\Http\Requests\Admin\CategoryRequest;
+class CategoryController extends BaseController
 {
+
     protected $service;
 
-    public function __construct(PermissionService $service)
+    public function __construct(CategoryService $service)
     {
         $this->service = $service;
     }
@@ -21,9 +22,8 @@ class PermissionController extends BaseController
      */
     public function index()
     {
-        $result = $this->service->index();
-        dd($result);
-        return request()->ajax() ? $result : view(getThemeView('permission.list'))->with($result);
+        $menus = $this->service->getMenuList();
+        return view(getThemeView('menu.list'))->with(compact('menus'));
     }
 
     /**
@@ -33,7 +33,8 @@ class PermissionController extends BaseController
      */
     public function create()
     {
-        return view(getThemeView('permission.create'));
+        $result = $this->service->create();
+        return view(getThemeView('menu.create'))->with($result);
     }
 
     /**
@@ -42,10 +43,10 @@ class PermissionController extends BaseController
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(PermissionRequest $request)
+    public function store(CategoryRequest $request)
     {
-        $route = $this->service->store($request->all());
-        return redirect()->route($route);
+        $result = $this->service->store($request->all());
+        return response()->json($result);
     }
 
     /**
@@ -56,7 +57,8 @@ class PermissionController extends BaseController
      */
     public function show($id)
     {
-        //
+        $result = $this->service->show($id);
+        return view(getThemeView('menu.show'))->with($result);
     }
 
     /**
@@ -68,7 +70,7 @@ class PermissionController extends BaseController
     public function edit($id)
     {
         $result = $this->service->edit($id);
-        return view(getThemeView('permission.edit'))->with($result);
+        return view(getThemeView('menu.edit'))->with($result);
     }
 
     /**
@@ -78,10 +80,10 @@ class PermissionController extends BaseController
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(PermissionRequest $request, $id)
+    public function update(CategoryRequest $request, $id)
     {
-        $route = $this->service->update($request->all(), $id);
-        return redirect()->route($route);
+        $result = $this->service->update($request->all(), $id);
+        return response()->json($result);
     }
 
     /**
@@ -93,6 +95,17 @@ class PermissionController extends BaseController
     public function destroy($id)
     {
         $this->service->destroy($id);
-        redirect()->route('permission.index');
+        return redirect()->route('menu.index');
+    }
+    /**
+     * 清除菜单缓存
+     * @author wenhaiqing
+     * @date   2017-08-01T11:03:45+0800
+     * @return [type]                   [description]
+     */
+    public function cacheClear()
+    {
+        $this->service->cacheClear();
+        return redirect()->route('menu.index');
     }
 }
