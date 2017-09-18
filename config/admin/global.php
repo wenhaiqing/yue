@@ -18,6 +18,7 @@ return [
 		'menu' => true,
 	],
 	'cache' => [
-		'menuList' => 'menuList'
+		'menuList' => 'menuList',
+		'categoryList' => 'categoryList'
 	]
 ];

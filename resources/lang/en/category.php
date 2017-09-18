@@ -1,0 +1,26 @@
+<?php
+
+return array (
+  'active' => 'Active Url',
+  'cache_clear' => 'Cache Clear',
+  'create' => 'Create category',
+  'created_at' => 'Create At',
+  'desc' => 'category',
+    'hot' => 'set hot category',
+    'pid_error' =>'can not choose oneself top category',
+  'description' => 'You can manipulate the category list on the left, or click the Add button below to add a category!',
+  'description_sorry' => 'No permission added category',
+  'icon' => 'Icon',
+  'category_description' => 'category Description',
+  'moreIcon' => 'More icons, please check <a href="http://fontawesome.io/icons/" target="_black">Font Awesome</a>',
+  'name' => 'category Name',
+  'pid' => 'category Relation',
+  'slug' => 'category Permission',
+  'sorry' => 'Sorry!',
+  'sort' => 'Sort',
+  'title' => 'category management',
+  'topcategory' => 'Top category',
+  'updated_at' => 'Updated At',
+  'url' => 'category Url',
+  'welcome' => 'Welcome ！',
+);

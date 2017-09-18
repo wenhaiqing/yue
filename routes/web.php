@@ -34,11 +34,11 @@ Route::group(['prefix' => 'admin','namespace' => 'Admin', 'middleware' => ['auth
     // 菜单
     $router->get('menu/clear','MenuController@cacheClear');
     $router->resource('menu','MenuController');
+    //分类
+    $router->get('category/clear','CategoryController@cacheClear');
+    $router->resource('category','CategoryController');
 
     $router->get('setting/{lang}', 'SettingController@language');
 
 
 });
-Auth::routes();
-
-Route::get('/home', 'HomeController@index')->name('home');

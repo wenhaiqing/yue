@@ -2,7 +2,7 @@
 namespace App\Services\Admin;
 
 use Facades\ {
-    App\Repositories\Eloquent\MenuRepositoryEloquent,
+    App\Repositories\Eloquent\CategoryRepositoryEloquent,
     App\Repositories\Eloquent\PermissionRepositoryEloquent
 };
 
@@ -10,7 +10,7 @@ use Exception;
 
 class CategoryService {
 
-	protected $module = 'menu';
+	protected $module = 'category';
 
 	/**
 	 * 获取菜单数据
@@ -18,33 +18,33 @@ class CategoryService {
 	 * @DateTime 2017-07-31T21:44:41+0800
 	 * @return   [type]                   [description]
 	 */
-	public function getMenuList()
+	public function getCategoryList()
 	{
 		// 判断数据是否缓存
-		if (cache()->has(config('admin.global.cache.menuList'))) {
-			return cache()->get(config('admin.global.cache.menuList'));
+		if (cache()->has(config('admin.global.cache.categoryList'))) {
+			return cache()->get(config('admin.global.cache.categoryList'));
 		}
-		return $this->sortMenuSetCache();
+		return $this->sortCategorySetCache();
 	}
 
 	/**
 	 * 递归菜单数据
 	 * @Author   wenhaiqing
 	 * @DateTime 2017-07-31T21:42:01+0800
-	 * @param    [type]                   $menus [description]
+	 * @param    [type]                   $Categorys [description]
 	 * @param    integer                  $pid   [description]
 	 * @return   [type]                          [description]
 	 */
-	private function sortMenu($menus,$pid=0)
+	private function sortCategory($Categorys,$pid=0)
 	{
 		$arr = [];
-		if (empty($menus)) {
+		if (empty($Categorys)) {
 			return '';
 		}
-		foreach ($menus as $key => $v) {
+		foreach ($Categorys as $key => $v) {
 			if ($v['pid'] == $pid) {
 				$arr[$key] = $v;
-				$arr[$key]['child'] = self::sortMenu($menus,$v['id']);
+				$arr[$key]['child'] = self::sortCategory($Categorys,$v['id']);
 			}
 		}
 		return $arr;
@@ -56,20 +56,20 @@ class CategoryService {
 	 * @DateTime 2017-07-31T21:42:12+0800
 	 * @return   [type]                   [description]
 	 */
-	private function sortMenuSetCache()
+	private function sortCategorySetCache()
 	{
-		$menus = MenuRepositoryEloquent::all()->toArray();
-		if ($menus) {
-			$menuList = $this->sortMenu($menus);
-			foreach ($menuList as $key => &$v) {
+		$Categorys = CategoryRepositoryEloquent::all()->toArray();
+		if ($Categorys) {
+			$categoryList = $this->sortCategory($Categorys);
+			foreach ($categoryList as $key => &$v) {
 				if ($v['child']) {
 					$sort = array_column($v['child'], 'sort');
 					array_multisort($sort,SORT_DESC,$v['child']);
 				}
 			}
 			// 缓存菜单数据
-			cache()->forever(config('admin.global.cache.menuList'),$menuList);
-			return $menuList;
+			cache()->forever(config('admin.global.cache.categoryList'),$categoryList);
+			return $categoryList;
 			
 		}
 		return '';
@@ -83,9 +83,8 @@ class CategoryService {
 	 */
 	public function create()
 	{
-		$menus = $this->getMenuList();
-		$permissions = PermissionRepositoryEloquent::all(['name', 'slug']);
-		return compact('menus', 'permissions');
+		$Categories = $this->getcategoryList();
+		return compact('Categories');
 	}
 
 	/**
@@ -97,10 +96,10 @@ class CategoryService {
 	public function store($attributes)
 	{
 		try {
-			$result = MenuRepositoryEloquent::create($attributes);
+			$result = CategoryRepositoryEloquent::create($attributes);
 			if ($result) {
 				// 更新缓存
-				$this->sortMenuSetCache();
+				$this->sortCategorySetCache();
 			}
 			return [
 				'status' => $result,
@@ -125,9 +124,9 @@ class CategoryService {
 	public function show($id)
 	{
 		try {
-			$menus = $this->getMenuList();
-			$menu = MenuRepositoryEloquent::find(decodeId($id, $this->module));
-			return compact('menus', 'menu');
+			$categorys = $this->getcategoryList();
+			$category = CategoryRepositoryEloquent::find(decodeId($id, $this->module));
+			return compact('categorys', 'category');
 		} catch (Exception $e) {
 			abort(500);
 		}
@@ -153,11 +152,19 @@ class CategoryService {
 	 */
 	public function update($attributes, $id)
 	{
+
 		try {
-			$isUpdate = MenuRepositoryEloquent::update($attributes, decodeId($id, $this->module));
+				if(decodeId($id,$this->module) == $attributes['pid'] && $attributes['pid'] !=0){
+					return [
+						'status' =>0,
+						'message' => trans('category.pid_error'),
+					];
+				}
+
+			$isUpdate = CategoryRepositoryEloquent::update($attributes, decodeId($id, $this->module));
 			if ($isUpdate) {
 				// 更新缓存
-				$this->sortMenuSetCache();
+				$this->sortCategorySetCache();
 			}
 			return [
 				'status' => $isUpdate,
@@ -180,9 +187,9 @@ class CategoryService {
 	public function destroy($id)
 	{
 		try {
-			$result = MenuRepositoryEloquent::delete(decodeId($id, $this->module));
+			$result = CategoryRepositoryEloquent::delete(decodeId($id, $this->module));
 			if ($result) {
-				$this->sortMenuSetCache();
+				$this->sortCategorySetCache();
 			}
 			flash_info($result,trans('common.destroy_success'),trans('common.destroy_error'));
 		} catch (Exception $e) {
@@ -192,7 +199,7 @@ class CategoryService {
 
 	public function cacheClear()
 	{
-		cache()->forget(config('admin.global.cache.menuList'));
+		cache()->forget(config('admin.global.cache.categoryList'));
 		flash(trans('common.cache_clear'), 'success')->important();
 	}
 

@@ -26,12 +26,11 @@ class CategoryRequest extends FormRequest
         $rule =  [
             'name' => 'required',
             'pid' => 'required',
-            'slug' => 'required',
         ];
 
-        if ($this->pid) {
-            $rule['url'] = 'required';
-        }
+//        if ($this->pid) {
+//            $rule['url'] = 'required';
+//        }
         return $rule;
     }
 
@@ -57,10 +56,9 @@ class CategoryRequest extends FormRequest
     public function attributes()
     {
         return [
-            'name'  => trans('menu.name'),
-            'pid'  => trans('menu.pid'),
-            'slug'  => trans('menu.slug'),
-            'url'  => trans('menu.url'),
+            'name'  => trans('category.name'),
+            'pid'  => trans('category.pid'),
+
         ];
     }
 }

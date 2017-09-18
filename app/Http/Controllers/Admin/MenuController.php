@@ -23,6 +23,7 @@ class MenuController extends BaseController
     public function index()
     {
         $menus = $this->service->getMenuList();
+
         return view(getThemeView('menu.list'))->with(compact('menus'));
     }
 

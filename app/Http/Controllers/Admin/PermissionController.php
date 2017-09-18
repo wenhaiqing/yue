@@ -22,7 +22,6 @@ class PermissionController extends BaseController
     public function index()
     {
         $result = $this->service->index();
-        dd($result);
         return request()->ajax() ? $result : view(getThemeView('permission.list'))->with($result);
     }
 

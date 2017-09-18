@@ -22,8 +22,8 @@ class CategoryController extends BaseController
      */
     public function index()
     {
-        $menus = $this->service->getMenuList();
-        return view(getThemeView('menu.list'))->with(compact('menus'));
+        $categories = $this->service->getCategoryList();
+        return view(getThemeView('category.list'))->with(compact('categories'));
     }
 
     /**
@@ -34,7 +34,7 @@ class CategoryController extends BaseController
     public function create()
     {
         $result = $this->service->create();
-        return view(getThemeView('menu.create'))->with($result);
+        return view(getThemeView('category.create'))->with($result);
     }
 
     /**
@@ -58,7 +58,7 @@ class CategoryController extends BaseController
     public function show($id)
     {
         $result = $this->service->show($id);
-        return view(getThemeView('menu.show'))->with($result);
+        return view(getThemeView('category.show'))->with($result);
     }
 
     /**
@@ -70,7 +70,7 @@ class CategoryController extends BaseController
     public function edit($id)
     {
         $result = $this->service->edit($id);
-        return view(getThemeView('menu.edit'))->with($result);
+        return view(getThemeView('category.edit'))->with($result);
     }
 
     /**
@@ -95,7 +95,7 @@ class CategoryController extends BaseController
     public function destroy($id)
     {
         $this->service->destroy($id);
-        return redirect()->route('menu.index');
+        return redirect()->route('category.index');
     }
     /**
      * 清除菜单缓存
@@ -106,6 +106,6 @@ class CategoryController extends BaseController
     public function cacheClear()
     {
         $this->service->cacheClear();
-        return redirect()->route('menu.index');
+        return redirect()->route('category.index');
     }
 }
