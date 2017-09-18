@@ -13,6 +13,7 @@
         "hieu-le/active": "^3.5",
         "laracasts/flash": "^3.0",
         "laravel/framework": "5.5.*",
+        "laravel/passport": "^4.0",
         "laravel/tinker": "~1.0",
         "prettus/l5-repository": "^2.6",
         "ultraware/roles": "^5.5",
