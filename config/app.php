@@ -187,7 +187,6 @@ return [
         Barryvdh\TranslationManager\ManagerServiceProvider::class,
         Krucas\Settings\Providers\SettingsServiceProvider::class,
         Barryvdh\LaravelIdeHelper\IdeHelperServiceProvider::class,
-        Arcanedev\LogViewer\LogViewerServiceProvider::class,
         Laravel\Passport\PassportServiceProvider::class,
 
     ],
