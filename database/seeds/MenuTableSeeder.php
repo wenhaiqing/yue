@@ -70,5 +70,14 @@ class MenuTableSeeder extends Seeder
 	        'active' => "admin/menu*",
 	        'description' => "显示菜单管理",
         ]);
+		Menu::create([
+			'name' => "分类管理",
+			'pid' => 0,
+			'icon' => "fa fa-navicon",
+			'slug' => "categorycontroller.index",
+			'url' => "admin/category",
+			'active' => "admin/category*",
+			'description' => "显示分类管理",
+		]);
     }
 }

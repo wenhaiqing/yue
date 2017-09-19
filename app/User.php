@@ -6,10 +6,11 @@ use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Ultraware\Roles\Contracts\HasRoleAndPermission as HasRoleAndPermissionContracts;
 use Ultraware\Roles\Traits\HasRoleAndPermission;
+use Laravel\Passport\HasApiTokens;
 
 class User extends Authenticatable implements HasRoleAndPermissionContracts
 {
-    use Notifiable, HasRoleAndPermission;
+    use Notifiable, HasRoleAndPermission, HasApiTokens;
 
     /**
      * The attributes that are mass assignable.
@@ -28,4 +29,8 @@ class User extends Authenticatable implements HasRoleAndPermissionContracts
     protected $hidden = [
         'password', 'remember_token',
     ];
+
+    public function findForPassport($username) {
+        return $this->where('username', $username)->first();
+    }
 }

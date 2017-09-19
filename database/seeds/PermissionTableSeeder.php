@@ -271,6 +271,67 @@ class PermissionTableSeeder extends Seeder
             'description' => '后台首页'
 
         ]);
+
+        /////////////
+        //分类管理 //
+        ////////////
+        /**
+         * 显示分类列表
+         */
+        Permission::create([
+            'name' => '显示分类列表',
+            'slug' => 'categorycontroller.index',
+            'description' => '显示分类列表'
+        ]);
+        /**
+         * 创建分类视图
+         */
+        Permission::create([
+            'name' => '创建分类视图',
+            'slug' => 'categorycontroller.create',
+            'description' => '创建分类视图'
+        ]);
+
+        /**
+         * 创建分类
+         */
+        Permission::create([
+            'name' => '创建分类',
+            'slug' => 'categorycontroller.store',
+            'description' => '创建分类'
+        ]);
+        /**
+         * 修改分类信息
+         */
+        Permission::create([
+            'name' => '修改分类视图',
+            'slug' => 'categorycontroller.edit',
+            'description' => '修改分类视图'
+        ]);
+        /**
+         * 修改分类信息
+         */
+        Permission::create([
+            'name' => '修改分类',
+            'slug' => 'categorycontroller.update',
+            'description' => '修改分类'
+        ]);
+        /**
+         * 删除分类
+         */
+        Permission::create([
+            'name' => '删除分类',
+            'slug' => 'categorycontroller.destroy',
+            'description' => '删除分类'
+        ]);
+        /**
+         * 查看分类信息
+         */
+        Permission::create([
+            'name' => '查看分类信息',
+            'slug' => 'categorycontroller.show',
+            'description' => '查看分类信息'
+        ]);
         
     }
 }
