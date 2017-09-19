@@ -21,6 +21,6 @@ class UserController extends Controller
 
     public function index(Request $request){
 
-        return $request;
+        return $request->user();
     }
 }
