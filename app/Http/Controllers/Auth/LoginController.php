@@ -72,4 +72,11 @@ class LoginController extends Controller
         //var_dump($this->redirectPath());exit;
         return redirect()->intended($this->redirectPath());
     }
+    /*
+     * 自定义登录认证字段
+     * @auther wenhaiqing
+     */
+    public function username(){
+        return 'name';
+    }
 }

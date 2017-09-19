@@ -20,3 +20,10 @@ Route::group(['namespace' => 'Api', 'middleware' => ['auth:api']],function ($rou
 
 
 });
+
+Route::group([
+    'prefix'=>'/v1',
+    'middleware' => ['api']
+], function () {
+    Route::post('/user/login','Api\AuthenticateController@login');
+});
