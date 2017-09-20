@@ -4,7 +4,7 @@
     <ul class="nav metismenu" id="side-menu">
       <li class="nav-header text-center">
           <div class="dropdown profile-element">
-            <h1 class="text-info"><strong class="font-bold">Any</strong></h1>
+            <h1 class="text-info"><strong class="font-bold">Yue</strong></h1>
           </div>
           <div class="logo-element">
             Any

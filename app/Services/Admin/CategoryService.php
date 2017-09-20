@@ -13,7 +13,7 @@ class CategoryService {
 	protected $module = 'category';
 
 	/**
-	 * 获取菜单数据
+	 * 获取分类数据
 	 * @Author   wenhaiqing
 	 * @DateTime 2017-07-31T21:44:41+0800
 	 * @return   [type]                   [description]
@@ -28,7 +28,7 @@ class CategoryService {
 	}
 
 	/**
-	 * 递归菜单数据
+	 * 递归分类数据
 	 * @Author   wenhaiqing
 	 * @DateTime 2017-07-31T21:42:01+0800
 	 * @param    [type]                   $Categorys [description]
@@ -51,7 +51,7 @@ class CategoryService {
 	}
 	
 	/**
-	 * 排序子菜单并缓存
+	 * 排序子分类并缓存
 	 * @Author   wenhaiqing
 	 * @DateTime 2017-07-31T21:42:12+0800
 	 * @return   [type]                   [description]
@@ -67,7 +67,7 @@ class CategoryService {
 					array_multisort($sort,SORT_DESC,$v['child']);
 				}
 			}
-			// 缓存菜单数据
+			// 缓存分类数据
 			cache()->forever(config('admin.global.cache.categoryList'),$categoryList);
 			return $categoryList;
 			
@@ -76,7 +76,7 @@ class CategoryService {
 	}
 
 	/**
-	 * 添加菜单视图
+	 * 添加分类视图
 	 * @Author   wenhaiqing
 	 * @DateTime 2017-07-31T22:53:43+0800
 	 * @return   [type]                   [description]
@@ -106,7 +106,6 @@ class CategoryService {
 				'message' => $result ? trans('common.create_success'):trans('common.create_error'),
 			];
 		} catch (Exception $e) {
-			dd($e);
 			return [
 				'status' => false,
 				'message' => trans('common.create_error'),

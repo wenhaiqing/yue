@@ -63,6 +63,22 @@ return [
             'bucket' => env('AWS_BUCKET'),
         ],
 
+        'qiniu' => [
+            'driver'  => 'qiniu',
+            'domains' => [
+                'default'   => 'omnqvls2t.bkt.clouddn.com', //你的七牛域名
+                'https'     => 'xxxxx',         //你的HTTPS域名
+                'custom'    => 'cache.whqrlm.com',     //你的自定义域名
+            ],
+            'access_key'=> '0TSRv6Rq9GGve3_C9XSgRaEYsyqUKUbE_ydv8139',  //AccessKey
+            'secret_key'=> 'lfIcf_uS5PEvDDH9Cj8aMYhuxdoARHHHxqrYRzSl',  //SecretKey
+            'bucket'    => 'wenhaiqing',  //Bucket名字
+            'notify_url'=> '',  //持久化处理回调地址
+            'access'    => 'public'  //空间访问控制 public 或 private
+        ],
+
     ],
+
+
 
 ];

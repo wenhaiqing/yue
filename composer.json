@@ -21,7 +21,8 @@
         "vinkla/hashids": "^3.3",
         "yajra/laravel-datatables-buttons": "^2.0",
         "yajra/laravel-datatables-html": "^2.0",
-        "yajra/laravel-datatables-oracle": "~8.0"
+        "yajra/laravel-datatables-oracle": "~8.0",
+        "zgldh/qiniu-laravel-storage": "^0.8.1"
     },
     "require-dev": {
         "filp/whoops": "~2.0",

@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Services\Admin\CategoryService;
 use App\Http\Requests\Admin\CategoryRequest;
+use zgldh\QiniuStorage\QiniuStorage;
 class CategoryController extends BaseController
 {
 
@@ -45,8 +46,44 @@ class CategoryController extends BaseController
      */
     public function store(CategoryRequest $request)
     {
-        $result = $this->service->store($request->all());
+        $res = $request ->all();
+        $path = $this->uploadqiniu($res);
+        if($path){
+            $res['url'] = $path;
+        }
+        $result = $this->service->store($res);
         return response()->json($result);
+    }
+
+    /**
+     * 上传图片到七牛
+     * @author wenhaiqing
+     * @return bool
+     */
+    public function uploadqiniu($request){
+
+            // 获取文件,file对应的是前端表单上传input的name
+            $file = $request['file'];
+        if ($file) {
+
+            // Laravel5.3中多了一个写法
+            // $file = $request->file;
+
+            // 初始化
+            $disk = QiniuStorage::disk('qiniu');
+            // 重命名文件
+            $fileName = md5($file->getClientOriginalName().time().rand()).'.'.$file->getClientOriginalExtension();
+
+            // 上传到七牛
+            $bool = $disk->put('wenhaiqing/image_'.$fileName,file_get_contents($file->getRealPath()));
+            // 判断是否上传成功
+            if ($bool) {
+                $path = $disk->downloadUrl('wenhaiqing/image_'.$fileName);
+                return $path;
+            }
+            return false;
+        }
+        return false;
     }
 
     /**

@@ -9,7 +9,7 @@
     </div>
   </div>
   <div class="ibox-content">
-    <form method="post" action="{{route('category.store')}}" class="form-horizontal" id="createForm">
+    <form method="post" action="{{route('category.store')}}" class="form-horizontal" enctype="multipart/form-data">
       {!!csrf_field()!!}
       <div class="form-group">
         <label class="col-sm-2 control-label">{{trans('category.name')}}</label>
@@ -37,8 +37,13 @@
           </select>
         </div>
       </div>
-
-
+      <div class="hr-line-dashed"></div>
+      <div class="form-group">
+        <label class="col-sm-2 control-label">上传分类图片</label>
+        <div class="col-sm-10">
+          <input type="file" name="file">
+        </div>
+      </div>
       <div class="hr-line-dashed"></div>
       <div class="form-group">
         <label class="col-sm-2 control-label">{{trans('category.sort')}}</label>
@@ -50,7 +55,7 @@
       <div class="form-group">
           <div class="col-sm-4 col-sm-offset-2">
             <a class="btn btn-white close-link">{!!trans('common.close')!!}</a>
-            <button class="btn btn-primary createButton ladda-button"  data-style="zoom-in">{!!trans('category.create')!!}</button>
+            <button type="submit"  data-style="zoom-in">{!!trans('category.create')!!}</button>
           </div>
       </div>
     </form>
