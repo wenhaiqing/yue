@@ -12,7 +12,7 @@ var MenuList = function() {
       createButton:'.createButton',
     };
     /**
-     * 添加菜单
+     * 添加分类
      * @author wenhaiqing
      * @date   2016-11-04T10:07:56+0800               [description]
      */
@@ -34,7 +34,7 @@ var MenuList = function() {
 
     $('.tooltips').tooltip();
     /**
-     * 添加菜单
+     * 添加分类
      * @author wenhaiqing
      * @date   2016-11-04T16:12:58+0800
      */
@@ -75,7 +75,7 @@ var MenuList = function() {
       });;
     });
     /**
-     * 修改菜单表单
+     * 修改分类表单
      * @author wenhaiqing
      * @date   2016-11-04T16:13:20+0800
      */
@@ -100,7 +100,7 @@ var MenuList = function() {
       });
     });
     /**
-     * 修改菜单数据
+     * 修改分类数据
      * @author wenhaiqing
      * @date   2016-11-04T16:51:00+0800
      */
@@ -142,7 +142,7 @@ var MenuList = function() {
       });;
     });
     /**
-     * 查看菜单详细信息
+     * 查看分类详细信息
      * @author wenhaiqing
      * @date   2016-11-04
      */

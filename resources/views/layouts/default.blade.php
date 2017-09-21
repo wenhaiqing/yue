@@ -63,7 +63,7 @@
       @yield('content')
       <div class="footer">
           <div class="pull-right">
-            <i class="fa fa-github"></i> <strong><a href="https://github.com/wenhaiqing" target="_blank">https://github.com/lanceWan</a></strong>
+            <i class="fa fa-github"></i> <strong><a href="https://github.com/wenhaiqing" target="_blank">https://github.com/wenhaiqing</a></strong>
           </div>
           <div>
               <strong>Copyright</strong> wenhaiqing后台 &copy; http://yue.zdxinfo.com

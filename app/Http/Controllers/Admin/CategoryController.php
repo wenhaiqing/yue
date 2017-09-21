@@ -52,7 +52,8 @@ class CategoryController extends BaseController
             $res['url'] = $path;
         }
         $result = $this->service->store($res);
-        return response()->json($result);
+        flash(trans($result['message']), 'success')->important();
+        return redirect()->route('category.index');
     }
 
     /**
@@ -66,14 +67,10 @@ class CategoryController extends BaseController
             $file = $request['file'];
         if ($file) {
 
-            // Laravel5.3中多了一个写法
-            // $file = $request->file;
-
             // 初始化
             $disk = QiniuStorage::disk('qiniu');
             // 重命名文件
             $fileName = md5($file->getClientOriginalName().time().rand()).'.'.$file->getClientOriginalExtension();
-
             // 上传到七牛
             $bool = $disk->put('wenhaiqing/image_'.$fileName,file_get_contents($file->getRealPath()));
             // 判断是否上传成功
