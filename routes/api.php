@@ -20,4 +20,10 @@ Route::group(['namespace' => 'Api', 'middleware' => ['auth:api']],function ($rou
 
 
 });
+Route::group(['namespace' => 'Api'],function ($router)
+{
+    $router->get('/sms','SmsController@index');
+
+
+});
 

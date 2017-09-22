@@ -53,6 +53,7 @@ class CategoryController extends BaseController
         }
         $result = $this->service->store($res);
         flash(trans($result['message']), 'success')->important();
+        
         return redirect()->route('category.index');
     }
 
