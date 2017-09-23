@@ -49,8 +49,8 @@ return [
 				'sign_name' => '',
 			],
 			'alidayu' => [
-				'app_key' => '23817263',
-				'app_secret' => '470451afe0c9255b18779da70e54a2d2',
+				'app_key' => '24634042',
+				'app_secret' => '21c500cb51483e3d9e34981aeaba304c',
 				'sign_name' => '山西菜市场',
 			],
 		],

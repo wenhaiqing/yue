@@ -26,7 +26,7 @@ class SmsController extends Controller
             'content'  => '您的验证码为: 6379',
             'template' => 'SMS_12190065',
             'data' => [
-                'name' => 6379
+                'name' => '6379'
             ],
         ]);
     }
