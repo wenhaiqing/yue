@@ -172,6 +172,28 @@ Eof
 			return $this->createRoute;
 		}
 	}
+	/**
+	 * 添加app用户
+	 * @Author   wenhaiqing
+	 * @DateTime 2017-07-26T22:42:59+0800
+	 * @param    [type]                   $attributes [description]
+	 * @return   [type]                               [description]
+	 */
+	public function apistore($attributes)
+	{
+		try {
+			$attributes['password'] = bcrypt($attributes['password']);
+
+			$result = UserRepositoryEloquent::create($attributes);
+
+			if ($result) {
+
+				return $result;
+			}
+		} catch (Exception $e) {
+			
+		}
+	}
 
 	/**
 	 * 查看
