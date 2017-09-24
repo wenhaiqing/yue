@@ -9,7 +9,7 @@ use Facades\ {
 use Exception;
 
 class CategoryService {
-
+	
 	protected $module = 'category';
 
 	/**

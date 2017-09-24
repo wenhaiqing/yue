@@ -6,7 +6,6 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Services\Admin\CategoryService;
 use App\Http\Requests\Admin\CategoryRequest;
-use zgldh\QiniuStorage\QiniuStorage;
 class CategoryController extends BaseController
 {
 
@@ -47,9 +46,10 @@ class CategoryController extends BaseController
     public function store(CategoryRequest $request)
     {
         $res = $request ->all();
-        $path = $this->uploadqiniu($res);
+        $path = $this->uploadqiniu($res['file']);
         if($path){
             $res['url'] = $path;
+            dump($res);
         }
         $result = $this->service->store($res);
         flash(trans($result['message']), 'success')->important();
@@ -57,32 +57,7 @@ class CategoryController extends BaseController
         return redirect()->route('category.index');
     }
 
-    /**
-     * 上传图片到七牛
-     * @author wenhaiqing
-     * @return bool
-     */
-    public function uploadqiniu($request){
 
-            // 获取文件,file对应的是前端表单上传input的name
-            $file = $request['file'];
-        if ($file) {
-
-            // 初始化
-            $disk = QiniuStorage::disk('qiniu');
-            // 重命名文件
-            $fileName = md5($file->getClientOriginalName().time().rand()).'.'.$file->getClientOriginalExtension();
-            // 上传到七牛
-            $bool = $disk->put('wenhaiqing/image_'.$fileName,file_get_contents($file->getRealPath()));
-            // 判断是否上传成功
-            if ($bool) {
-                $path = $disk->downloadUrl('wenhaiqing/image_'.$fileName);
-                return $path;
-            }
-            return false;
-        }
-        return false;
-    }
 
     /**
      * Display the specified resource.
@@ -133,7 +108,7 @@ class CategoryController extends BaseController
         return redirect()->route('category.index');
     }
     /**
-     * 清除菜单缓存
+     * 清除分类缓存
      * @author wenhaiqing
      * @date   2017-08-01T11:03:45+0800
      * @return [type]                   [description]

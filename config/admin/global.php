@@ -19,6 +19,7 @@ return [
 	],
 	'cache' => [
 		'menuList' => 'menuList',
-		'categoryList' => 'categoryList'
+		'categoryList' => 'categoryList',
+		'slideList' => 'slideList'
 	],
 ];

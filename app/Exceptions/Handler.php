@@ -48,13 +48,6 @@ class Handler extends ExceptionHandler
      */
     public function render($request, Exception $exception)
     {
-        // 将方法拦截到自己的ExceptionReport
-        $reporter = ExceptionReport::make($exception);
-
-        if ($reporter->shouldReturn()){
-            return $reporter->report();
-        }
-
         return parent::render($request, $exception);
     }
 }

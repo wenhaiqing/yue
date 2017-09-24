@@ -37,6 +37,9 @@ Route::group(['prefix' => 'admin','namespace' => 'Admin', 'middleware' => ['auth
     //分类
     $router->get('category/clear','CategoryController@cacheClear');
     $router->resource('category','CategoryController');
+    //首页幻灯片
+    $router->get('slide/clear','SlideController@cacheClear');
+    $router->resource('slide','SlideController');
 
     $router->get('setting/{lang}', 'SettingController@language');
 

@@ -17,7 +17,7 @@ return array (
   'edit_error' => '修改失败！',
   'destroy_success' => '删除成功！',
   'destroy_error' => '删除失败！',
-  'cache_clear' => '缓存清楚成功！',
+  'cache_clear' => '缓存清除成功！',
   'deleteTitle' => '确定删除该',
   'yes' => '确定',
   'no' => '取消',
