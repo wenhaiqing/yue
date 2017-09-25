@@ -63,13 +63,14 @@
                             </tr>
                             </thead>
                             <tbody>
-                            @foreach ($result as $res)
+                            @for($i=0;$i<count($result);$i++)
                                 <tr>
-                                    <td>{{$res->id}}</td>
-                                    <td><img style="height:50px;" src="{{$res->path}}"></td>
-                                    <td><a href="javascript:;" onclick="delSlide({{$res->id}})"><i class="fa fa-times text-navy"></i></a></td>
+                                    <td>{{$result[$i]['id']}}</td>
+                                    <td><img style="height:50px;" src="{{$result[$i]['path']}}"></td>
+                                    <td><a href="javascript:;" onclick="delSlide({{$result[$i]['id']}})"><i class="fa fa-times text-navy"></i></a></td>
                                 </tr>
-                            @endforeach
+                            @endfor
+
                             </tbody>
                         </table>
 

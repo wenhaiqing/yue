@@ -199,6 +199,7 @@ class CategoryService {
 	public function cacheClear()
 	{
 		cache()->forget(config('admin.global.cache.categoryList'));
+		cache()->forget(config('admin.global.cache.app_home_categoryList'));
 		flash(trans('common.cache_clear'), 'success')->important();
 	}
 

@@ -24,6 +24,7 @@ Route::group(['namespace' => 'Api'],function ($router)
 {
     $router->post('/sms','SmsController@index');
     $router->post('/register','RegisterController@index');
+    $router->get('/home','HomeController@index');
 
 });
 

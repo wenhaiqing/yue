@@ -2,21 +2,12 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Models\Picture;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use App\Services\Admin\SlideService;
+use App\Models\Topline;
 use Cache;
-
-class SlideController extends Controller
+class ToplineController extends Controller
 {
-
-    protected $service;
-
-    public function __construct(SlideService $service)
-    {
-        $this->service = $service;
-    }
     /**
      * Display a listing of the resource.
      *
@@ -24,14 +15,13 @@ class SlideController extends Controller
      */
     public function index()
     {
-
-        if (Cache::has(config('admin.global.cache.slideList'))) {
-            $result = Cache::get(config('admin.global.cache.slideList'));
+        if (Cache::has(config('admin.global.cache.toplineList'))) {
+            $result = Cache::get(config('admin.global.cache.toplineList'));
         }else{
-            $result = Picture::all()->toArray();
-            Cache::forever(config('admin.global.cache.slideList'),$result);
+            $result = Topline::all()->toArray();
+            Cache::forever(config('admin.global.cache.toplineList'),$result);
         }
-        return view(getThemeView('slide.list'))->with(compact('result'));
+        return view(getThemeView('topline.list'))->with(compact('result'));
     }
 
     /**
@@ -41,7 +31,7 @@ class SlideController extends Controller
      */
     public function create()
     {
-        return view(getThemeView('slide.create'));
+        //
     }
 
     /**
@@ -52,22 +42,23 @@ class SlideController extends Controller
      */
     public function store(Request $request)
     {
-        $res = $request ->all();
-        for ($i=0;$i<count($res['file']);$i++){
-            $path = $this->uploadqiniu($res['file'][$i]);
-            $res['path'] = $path;
-            $result = $this->service->store($res);
+        $res = Topline::create($request->all());
+        if($res){
+            Cache::forget(config('admin.global.cache.toplineList'));
+            flash(trans('common.create_success'), 'success')->important();
+        }else{
+            flash(trans('common.create_error'), 'error')->important();
         }
-//        Cache::forget(config('admin.global.cache.slideList'));
+        return redirect()->route('topline.index');
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  \App\Picture  $picture
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show(Picture $picture)
+    public function show($id)
     {
         //
     }
@@ -75,10 +66,10 @@ class SlideController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Picture  $picture
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit(Picture $picture)
+    public function edit($id)
     {
         //
     }
@@ -87,10 +78,10 @@ class SlideController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Picture  $picture
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Picture $picture)
+    public function update(Request $request, $id)
     {
         //
     }
@@ -98,25 +89,38 @@ class SlideController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Picture  $picture
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
     public function destroy($id)
     {
-        $res = $this->service->destroy($id);
-        return $res;
+        $res = Topline::destroy($id);
+        if($res){
+            Cache::forget(config('admin.global.cache.toplineList'));
+            return [
+                'status' => 0,
+                'msg' => $res ? trans('common.destroy_success'):trans('common.destroy_error'),
+            ];
+
+        }else{
+            return [
+                'status' => 1,
+                'msg' => trans('common.destroy_error'),
+            ];
+        }
+
     }
 
     /**
-     * 清除分类缓存
+     * 清除缓存
      * @author wenhaiqing
      * @date   2017-08-01T11:03:45+0800
      * @return [type]                   [description]
      */
     public function cacheClear()
     {
-        Cache::forget(config('admin.global.cache.slideList'));
+        Cache::forget(config('admin.global.cache.toplineList'));
         flash(trans('common.cache_clear'), 'success')->important();
-        return redirect()->route('slide.index');
+        return redirect()->route('topline.index');
     }
 }

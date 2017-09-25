@@ -40,6 +40,9 @@ Route::group(['prefix' => 'admin','namespace' => 'Admin', 'middleware' => ['auth
     //首页幻灯片
     $router->get('slide/clear','SlideController@cacheClear');
     $router->resource('slide','SlideController');
+    //首页头条
+    $router->get('topline/clear','ToplineController@cacheClear');
+    $router->resource('topline','ToplineController');
 
     $router->get('setting/{lang}', 'SettingController@language');
 

@@ -20,6 +20,8 @@ return [
 	'cache' => [
 		'menuList' => 'menuList',
 		'categoryList' => 'categoryList',
-		'slideList' => 'slideList'
+		'slideList' => 'slideList',
+		'toplineList' => 'toplineList',
+		'app_home_categoryList' => 'app_home_categoryList'
 	],
 ];
