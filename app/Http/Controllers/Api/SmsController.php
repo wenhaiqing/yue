@@ -32,7 +32,7 @@ class SmsController extends Controller
             ],
         ]);
         if($res['alidayu']['status'] == 'success'){
-            $expiresAt = Carbon::now()->addMinutes(100);
+            $expiresAt = Carbon::now()->addMinutes(3);
 
             Cache::put($phone, $code, $expiresAt);
         }
