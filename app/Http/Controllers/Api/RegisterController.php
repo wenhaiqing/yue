@@ -10,6 +10,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Services\Admin\UserService;
 use Cache;
+use DB;
 class RegisterController extends Controller
 {
     protected $service;
@@ -51,5 +52,24 @@ class RegisterController extends Controller
         if($code == $res['code']){
             return true;
         }
+    }
+
+    public function login(Request $request){
+        $res = $request->all();
+        $http = new \GuzzleHttp\Client;
+        $results = DB::select('select id,secret from yue_oauth_clients where name = :name', ['name' => 'Laravel Password Grant Client']);
+        $response = $http->post('http://yue.zdxinfo.com/oauth/token', [
+            'form_params' => [
+                'grant_type' => 'password',
+                'client_id' => $results[0]->id,
+                'client_secret' => $results[0]->secret,
+                'username' => $res['phone'],
+                'password' => $res['password'],
+                'scope' => '',
+            ],
+        ]);
+
+        return json_decode((string) $response->getBody(), true);
+
     }
 }
