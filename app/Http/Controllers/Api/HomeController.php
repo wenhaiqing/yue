@@ -28,7 +28,7 @@ class HomeController extends Controller
         if (Cache::has(config('admin.global.cache.app_home_categoryList'))) {
             $category = Cache::get(config('admin.global.cache.app_home_categoryList'));
         }else{
-            $category = Category::where('hot', 1)->orderBy('sort', 'desc')->take(7)->get();
+            $category = Category::where('hot', 1)->orderBy('sort', 'desc')->take(9)->get();
             Cache::forever(config('admin.global.cache.app_home_categoryList'),$category);
         }
         
