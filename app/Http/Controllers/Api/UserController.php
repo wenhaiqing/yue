@@ -24,7 +24,7 @@ class UserController extends Controller
      */
     public function edit(Request $request){
         $user = $request->user();
-
+        $attr = $request->all();
         $uid = $user->id;
         //$result =  User::where('id',$uid)->update($attr);
         $result = $this->service->app_update($attr,$uid);
