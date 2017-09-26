@@ -278,6 +278,38 @@ Eof
 	}
 
 	/**
+	 * 修改数据
+	 * @author wenhaiqing
+	 * @date   2017-07-27T11:35:33+0800
+	 * @param  [type]                   $attributes [description]
+	 * @param  [type]                   $id         [description]
+	 * @return [type]                               [description]
+	 */
+	public function app_update($attributes, $id)
+	{
+		try {
+			// 修改密码
+			if ($attributes['password']) {
+				$attributes['password'] = bcrypt($attributes['password']);
+			}else{
+				unset($attributes['password']);
+			}
+			$result = UserRepositoryEloquent::update($attributes, $id);
+			if ($result) {
+				return [
+					'status' =>1,
+					'message' => trans('common.edit_success');
+				]
+			}
+		} catch (Exception $e) {
+			return [
+				'status' => 0,
+				'message' =>trans('common.edit_error');
+			]
+		}
+	}
+
+	/**
 	 * 删除数据
 	 * @author wenhaiqing
 	 * @date   2017-07-27T13:57:40+0800

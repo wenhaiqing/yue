@@ -17,6 +17,8 @@ use Illuminate\Http\Request;
 Route::group(['namespace' => 'Api', 'middleware' => ['auth:api']],function ($router)
 {
     $router->post('/user','UserController@index');
+    $router->post('/user/edit','UserController@edit');
+
 
 
 });
@@ -26,6 +28,7 @@ Route::group(['namespace' => 'Api'],function ($router)
     $router->post('/register','RegisterController@index');
     $router->post('/login','RegisterController@login');
     $router->get('/home','HomeController@index');
+
 
 });
 
