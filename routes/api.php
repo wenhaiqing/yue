@@ -18,6 +18,7 @@ Route::group(['namespace' => 'Api', 'middleware' => ['auth:api']],function ($rou
 {
     $router->post('/user','UserController@index');
     $router->post('/user/edit','UserController@edit');
+    $router->post('/user/avatar','UserController@uploadavatar');
 
 
 

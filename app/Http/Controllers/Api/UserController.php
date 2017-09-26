@@ -24,14 +24,7 @@ class UserController extends BaseController
      */
     public function edit(Request $request){
         $user = $request->user();
-        $attr = $request->all();
-//        if($attr['file']){
-//            $path = $this->uploadqiniu($attr['file']);
-//            if($path){
-//                $res['avatar'] = $path;
-//                $attr['avatar'] = $path;
-//            }
-//        }
+
         $uid = $user->id;
         //$result =  User::where('id',$uid)->update($attr);
         $result = $this->service->app_update($attr,$uid);
@@ -43,7 +36,17 @@ class UserController extends BaseController
                 $res['status'] = '1';
         }
         return response()->json($res);
-       // $result = UserRepositoryEloquent::update($request->all(), $uid);
-
+    }
+    /*
+     * 修改头像
+     */
+    public function uploadavatar(Request $request){
+        $attr = $request->all();
+        if($attr['file']){
+            $path = $this->uploadqiniu($attr['file']);
+            if($path){
+                return $path;
+            }
+        }
     }
 }
