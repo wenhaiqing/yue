@@ -18,7 +18,7 @@ class User extends Authenticatable implements HasRoleAndPermissionContracts
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'password','username',
+        'name', 'email', 'password','phone','age','sex','company','introduction','weixin',
     ];
 
     /**
@@ -31,6 +31,6 @@ class User extends Authenticatable implements HasRoleAndPermissionContracts
     ];
 
     public function findForPassport($username) {
-        return $this->where('username', $username)->first();
+        return $this->where('phone', $username)->first();
     }
 }
