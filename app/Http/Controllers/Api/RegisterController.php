@@ -63,7 +63,7 @@ class RegisterController extends Controller
                 'grant_type' => 'password',
                 'client_id' => $results[0]->id,
                 'client_secret' => $results[0]->secret,
-                'phone' => $res['phone'],
+                'username' => $res['phone'],
                 'password' => $res['password'],
                 'scope' => '',
             ],
