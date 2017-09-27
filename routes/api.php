@@ -29,6 +29,7 @@ Route::group(['namespace' => 'Api'],function ($router)
     $router->post('/register','RegisterController@index');
     $router->post('/login','RegisterController@login');
     $router->get('/home','HomeController@index');
+    $router->post('/logout','RegisterController@logout');
 
 
 });

@@ -29,6 +29,7 @@ class UserController extends BaseController
         //$result =  User::where('id',$uid)->update($attr);
         $result = $this->service->app_update($attr,$uid);
         if($result){
+                $res['result'] = $result;
                 $res['message'] = '更新成功';
                 $res['status'] = '1';
         }else{
@@ -61,4 +62,5 @@ class UserController extends BaseController
             }
         }
     }
+    
 }

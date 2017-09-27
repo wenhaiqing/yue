@@ -11,6 +11,7 @@ use Illuminate\Http\Request;
 use App\Services\Admin\UserService;
 use Cache;
 use DB;
+use Illuminate\Support\Facades\Auth;
 class RegisterController extends Controller
 {
     protected $service;
@@ -25,8 +26,9 @@ class RegisterController extends Controller
     public function index(Request $request)
     {
         $arr = $request->all();
-        $data['username'] = $arr['phone'];
+        $data['phone'] = $arr['phone'];
         $data['password'] = $arr['password'];
+        $data['name'] = $this->str_rand();
         $result = $this->validatorcode($arr);
         if($result){
             $add = $this->service->apistore($data);
@@ -44,6 +46,21 @@ class RegisterController extends Controller
         return response()->json($res);
     }
     /*
+     * 生成随机字符串
+     */
+    public function str_rand($length = 32, $char = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ') {
+        if(!is_int($length) || $length < 0) {
+                     return false;
+        }
+
+         $string = '';
+         for($i = $length; $i > 0; $i--) {
+             $string .= $char[mt_rand(0, strlen($char) - 1)];
+         }
+
+     return $string;
+    }
+    /*
      * 验证短信验证码
      */
     public function validatorcode($res){
@@ -53,7 +70,9 @@ class RegisterController extends Controller
             return true;
         }
     }
-
+    /*
+     * app 登录方法
+     */
     public function login(Request $request){
         $res = $request->all();
         $http = new \GuzzleHttp\Client;
@@ -70,6 +89,21 @@ class RegisterController extends Controller
         ]);
 
         return json_decode((string) $response->getBody(), true);
+    }
+    /*
+     * APP退出登录
+     */
+    public function logout(Request $request)
+    {
+
+        if (Auth::guard('api')->check()){
+
+            Auth::guard('api')->user()->token()->revoke();
+
+        }
+            $res['message'] = '退出登录成功';
+        $res['status'] = 1;
+        return response()->json($res);
 
     }
 }
