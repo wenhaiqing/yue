@@ -14,7 +14,8 @@ class BaseController extends Controller
             // 初始化
             $disk = QiniuStorage::disk('qiniu');
             // 重命名文件
-            $fileName = md5($file['name'].time().rand()).'.'.$file['type'];
+            $file_type = pathinfo($file['name'], PATHINFO_EXTENSION);
+            $fileName = md5($file['name'].time().rand()).'.'.$file_type;
             // 上传到七牛
             $bool = $disk->put('wenhaiqing/image_'.$fileName,file_get_contents($file['tmp_name']));
             // 判断是否上传成功
