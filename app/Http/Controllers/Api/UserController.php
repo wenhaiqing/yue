@@ -48,7 +48,7 @@ class UserController extends BaseController
         if($attr['file']){
             $path = $this->app_uploadqiniu($attr['file']);
             if($path){
-                $res['url'] = $path;
+                $res['avatar'] = $path;
                 $result = $this->service->app_update($res,$uid);
                 if($result){
                     $res['message'] = '更新成功';
