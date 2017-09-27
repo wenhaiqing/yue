@@ -42,9 +42,10 @@ class UserController extends Controller
      */
     public function uploadavatar(Request $request){
         $attr = $request->all();
-       // return $attr;
+        $attr['file'] = $_FILES["file"];
+        return $attr;
         if($attr['file']){
-            $path = $this->uploadqiniu($attr['file']);
+            $path = $this->app_uploadqiniu($attr['file']);
             if($path){
                 return $path;
             }
