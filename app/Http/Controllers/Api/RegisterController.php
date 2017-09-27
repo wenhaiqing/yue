@@ -52,7 +52,6 @@ class RegisterController extends Controller
         if(!is_int($length) || $length < 0) {
                      return false;
         }
-
          $string = '约_';
          for($i = $length; $i > 0; $i--) {
              $string .= $char[mt_rand(0, strlen($char) - 1)];
