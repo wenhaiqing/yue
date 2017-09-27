@@ -46,7 +46,9 @@ class UserController extends BaseController
         if($attr['file']){
             $path = $this->app_uploadqiniu($attr['file']);
             if($path){
-                return $path;
+                $res['url'] = $path;
+                $res['status'] = '1';
+                return response()->json($res);
             }
         }
     }
