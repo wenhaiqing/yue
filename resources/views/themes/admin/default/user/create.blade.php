@@ -54,12 +54,12 @@
               </div>
             </div>
             <div class="hr-line-dashed"></div>
-            <div class="form-group{{ $errors->has('username') ? ' has-error' : '' }}">
-              <label class="col-sm-2 control-label">{{trans('user.username')}}</label>
+            <div class="form-group{{ $errors->has('phone') ? ' has-error' : '' }}">
+              <label class="col-sm-2 control-label">{{trans('user.phone')}}</label>
               <div class="col-sm-10">
-                <input type="text" class="form-control" name="username" value="{{old('username')}}" placeholder="{{trans('user.username')}}"> 
-                @if ($errors->has('username'))
-                <span class="help-block m-b-none text-danger">{{ $errors->first('username') }}</span>
+                <input type="text" class="form-control" name="phone" value="{{old('phone')}}" placeholder="{{trans('user.phone')}}"> 
+                @if ($errors->has('phone'))
+                <span class="help-block m-b-none text-danger">{{ $errors->first('phone') }}</span>
                 @endif
               </div>
             </div>

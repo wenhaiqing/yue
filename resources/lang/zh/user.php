@@ -2,6 +2,7 @@
 
 return array (
   'title' => '用户管理',
+    'phone' => '手机号',
   'name' => '呢称',
   'username' => '用户名',
   'slug' => '用户',

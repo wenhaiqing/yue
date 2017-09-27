@@ -27,10 +27,10 @@ class UserRequest extends FormRequest
         // 添加用户
         if (request()->isMethod('POST')) {
             $rules['password'] = 'required';
-            $rules['username'] = 'required|unique:users,username';
+            $rules['phone'] = 'required|unique:users,phone';
         }else{
             // 修改时 request()->method() 方法返回的是 PUT或PATCH
-            $rules['username'] = [
+            $rules['phone'] = [
                 'required',
                 Rule::unique('users')->ignore(decodeId(request()->route('user'), 'user')),
             ];
@@ -62,7 +62,7 @@ class UserRequest extends FormRequest
     {
         return [
             'name'  => trans('user.name'),
-            'username'  => trans('user.username'),
+            'phone'  => trans('user.phone'),
             'password'  => trans('user.password'),
         ];
     }
