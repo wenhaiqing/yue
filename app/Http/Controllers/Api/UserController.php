@@ -33,7 +33,7 @@ class UserController extends BaseController
                 $res['status'] = '1';
         }else{
                $res['message'] = '更新失败';
-                $res['status'] = '1';
+                $res['status'] = '0';
         }
         return response()->json($res);
     }
@@ -42,12 +42,21 @@ class UserController extends BaseController
      */
     public function uploadavatar(Request $request){
         $attr = $request->all();
+        $user = $request->user();
+        $uid = $user->id;
         $attr['file'] = $_FILES["file"];
         if($attr['file']){
             $path = $this->app_uploadqiniu($attr['file']);
             if($path){
                 $res['url'] = $path;
-                $res['status'] = '1';
+                $result = $this->service->app_update($res,$uid);
+                if($result){
+                    $res['message'] = '更新成功';
+                    $res['status'] = '1';
+                }else{
+                    $res['message'] = '更新失败';
+                    $res['status'] = '0';
+                }
                 return response()->json($res);
             }
         }
