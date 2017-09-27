@@ -46,6 +46,7 @@ class CategoryController extends BaseController
     public function store(CategoryRequest $request)
     {
         $res = $request ->all();
+
         if($res['file']){
             $path = $this->uploadqiniu($res['file']);
             if($path){
