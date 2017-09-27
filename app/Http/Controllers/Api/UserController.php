@@ -5,7 +5,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\User;
 use App\Services\Admin\UserService;
-class UserController extends Controller
+class UserController extends BaseController
 {
 
     protected $service;
