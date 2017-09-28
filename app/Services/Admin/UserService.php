@@ -58,7 +58,7 @@ class UserService {
 Eof
 			])->addIndex(['data' => 'DT_Row_Index', 'name' => 'DT_Row_Index', 'title' => trans('common.number')])
 			->addColumn(['data' => 'name', 'name' => 'name', 'title' => trans('user.name')])
-	        ->addColumn(['data' => 'username', 'name' => 'username', 'title' => trans('user.username')])
+	        ->addColumn(['data' => 'phone', 'name' => 'phone', 'title' => trans('user.phone')])
 	        ->addColumn(['data' => 'email', 'name' => 'email', 'title' => trans('user.email')])
 	        ->addColumn(['data' => 'created_at', 'name' => 'created_at', 'title' => trans('user.created_at')])
 	        ->addColumn(['data' => 'updated_at', 'name' => 'updated_at', 'title' => trans('user.updated_at')])
