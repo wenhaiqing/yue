@@ -47,6 +47,13 @@
       </div>
       <div class="hr-line-dashed"></div>
       <div class="form-group">
+        <label class="col-sm-2 control-label">{{trans('category.name')}}</label>
+        <div class="col-sm-10">
+          <input type="text" class="form-control" value="{{$category->name}}" name="name">
+        </div>
+      </div>
+      <div class="hr-line-dashed"></div>
+      <div class="form-group">
           <div class="col-sm-4 col-sm-offset-2">
             <a class="btn btn-white close-link">{!!trans('common.close')!!}</a>
             <button class="btn btn-primary editButton ladda-button"  data-style="zoom-in">{!!trans('common.edit')!!}</button>

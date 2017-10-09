@@ -74,7 +74,8 @@ return [
             'secret_key'=> 'lfIcf_uS5PEvDDH9Cj8aMYhuxdoARHHHxqrYRzSl',  //SecretKey
             'bucket'    => 'wenhaiqing',  //Bucket名字
             'notify_url'=> '',  //持久化处理回调地址
-            'access'    => 'public'  //空间访问控制 public 或 private
+            'access'    => 'public', //空间访问控制 public 或 private,
+            'qiniuhttp' => 'http://omnqvls2t.bkt.clouddn.com/'//该参数是用户删除七牛图片时去除域名只传图片路径参数
         ],
 
     ],

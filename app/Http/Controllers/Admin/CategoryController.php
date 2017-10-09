@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Services\Admin\CategoryService;
 use App\Http\Requests\Admin\CategoryRequest;
+use App\Models\Category;
 class CategoryController extends BaseController
 {
 
@@ -46,6 +47,7 @@ class CategoryController extends BaseController
     public function store(CategoryRequest $request)
     {
         $res = $request ->all();
+        $res['norms'] = serialize($res['norms']);
 
         if($res['file']){
             $path = $this->uploadqiniu($res['file']);
@@ -104,9 +106,16 @@ class CategoryController extends BaseController
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy($id_)
     {
-        $this->service->destroy($id);
+        $id = decodeId($id_, 'category');
+        $path = Category::find($id)->toArray();
+        $file = str_replace(config('filesystems.disks.qiniu.qiniuhttp'),'',$path['url']);
+        $res = $this->service->destroy($id_);
+        if($res){
+            $result = $this->deleteqiniu($file);
+        }
+        flash_info($res,trans('common.destroy_success'),trans('common.destroy_error'));
         return redirect()->route('category.index');
     }
     /**

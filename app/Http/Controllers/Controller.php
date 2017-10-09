@@ -57,4 +57,27 @@ class Controller extends BaseController
         }
         return false;
     }
+
+    /**
+     * 从七牛删除图片
+     * @author wenhaiqing
+     * $file string 图片路径
+     * @return bool
+     */
+    public function deleteqiniu($file){
+
+        if ($file) {
+
+            // 初始化
+            $disk = QiniuStorage::disk('qiniu');
+
+            $bool = $disk->delete($file);                      //删除文件;
+            // 判断是否上传成功
+            if ($bool) {
+                return true;
+            }
+            return false;
+        }
+        return false;
+    }
 }

@@ -7,6 +7,8 @@ return array (
   'icon' => '图标',
   'pid' => '分类关系',
   'slug' => '分类权限',
+    'norms' => '分类规格',
+    'norms_para' => '分类规格参数',
   'url' => '分类链接',
   'active' => '高亮地址',
     'hot' => '设置热门分类',

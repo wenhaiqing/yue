@@ -44,6 +44,43 @@
           <input type="file" name="file">
         </div>
       </div>
+      <div class="hr-line-dashed"></div>
+      <div class="form-group">
+        <label class="col-sm-2 control-label">{{trans('category.norms')}}</label>
+        <div class="col-sm-10">
+          <input type="text" class="form-control" value="" placeholder="例如:自驾分类的车辆来源,车辆类型，这里只能填单个" name="norms[0]['norm']">
+        </div>
+      </div>
+      <div class="hr-line-dashed"></div>
+      <div class="form-group">
+        <label class="col-sm-2 control-label">{{trans('category.norms_para')}}</label>
+        <div class="col-sm-10">
+          <input type="text" class="form-control" value="" placeholder="例如:车辆类型有轿车，越野车，这里多个用英文逗号分隔" name="norms[0]['para']">
+        </div>
+      </div>
+      @for ($i = 1; $i < 10; $i++)
+        <div id="norms_{{$i}}" style="display:none">
+        <div class="hr-line-dashed"></div>
+        <div class="form-group">
+          <label class="col-sm-2 control-label">{{trans('category.norms')}}{{$i}}</label>
+          <div class="col-sm-10">
+            <input type="text" class="form-control" value="" placeholder="例如:自驾分类的车辆来源,车辆类型，这里只能填单个" name="norms[{{$i}}]['norm']">
+          </div>
+        </div>
+        <div class="hr-line-dashed"></div>
+        <div class="form-group">
+          <label class="col-sm-2 control-label">{{trans('category.norms_para')}}{{$i}}</label>
+          <div class="col-sm-10">
+            <input type="text" class="form-control" value="" placeholder="例如:车辆类型有轿车，越野车，这里多个用英文逗号分隔" name="norms[{{$i}}]['para']">
+          </div>
+        </div>
+        </div>
+      @endfor
+      <div class="col-sm-4 col-sm-offset-2">
+        <button id="bt_add_keyword" type="button" class="btn btn-warning">
+          <span class="glyphicon glyphicon-plus"></span> 添加分类规格
+        </button>
+      </div>
 
       <div class="hr-line-dashed"></div>
       <div class="form-group">
@@ -69,5 +106,20 @@
       min: 0,
       max: 100,
       from: 0
+  });
+  var set_begin_num = 1;
+
+  $('#bt_add_keyword').click(function(){
+
+    $('#norms_' + set_begin_num).show();
+
+    if (set_begin_num >= 10) {
+
+      $('#bt_add_keyword').hide();
+
+    }
+
+    set_begin_num++;
+
   });
 </script>

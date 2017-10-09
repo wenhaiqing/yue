@@ -167,7 +167,7 @@ class CategoryService {
 			}
 			return [
 				'status' => $isUpdate,
-				'message' => $isUpdate ? trans('common.edit_success'):trans('.common.edit_error'),
+				'message' => $isUpdate ? trans('common.edit_success'):trans('common.edit_error'),
 			];
 		} catch (Exception $e) {
 			return [
@@ -190,9 +190,15 @@ class CategoryService {
 			if ($result) {
 				$this->sortCategorySetCache();
 			}
-			flash_info($result,trans('common.destroy_success'),trans('common.destroy_error'));
+			return [
+				'status' => $result,
+				'message' => $result ? trans('common.destroy_success'):trans('common.destroy_error'),
+			];
 		} catch (Exception $e) {
-			flash(trans('common.destroy_error'), 'danger');
+			return [
+				'status' => false,
+				'message' => trans('common.destroy_error'),
+			];
 		}
 	}
 
