@@ -46,12 +46,27 @@
         </div>
       </div>
       <div class="hr-line-dashed"></div>
-      <div class="form-group">
-        <label class="col-sm-2 control-label">{{trans('category.name')}}</label>
-        <div class="col-sm-10">
-          <input type="text" class="form-control" value="{{$category->name}}" name="name">
+      @for ($i = 0; $i < count($norms); $i++)
+        @if($norms[$i]['norm'])
+        <div id="norms_{{$i}}">
+          <div class="hr-line-dashed"></div>
+          <div class="form-group">
+            <label class="col-sm-2 control-label">{{trans('category.norms')}}{{$i}}</label>
+            <div class="col-sm-10">
+              <input type="text" class="form-control" value="{{$norms[$i]['norm']}}" placeholder="例如:自驾分类的车辆来源,车辆类型，这里只能填单个" name="norms[{{$i}}][norm]">
+            </div>
+          </div>
+          <div class="hr-line-dashed"></div>
+          <div class="form-group">
+            <label class="col-sm-2 control-label">{{trans('category.norms_para')}}{{$i}}</label>
+            <div class="col-sm-10">
+              <input type="text" class="form-control" value="{{$norms[$i]['para']}}" placeholder="例如:车辆类型有轿车，越野车，这里多个用英文逗号分隔" name="norms[{{$i}}][para]">
+            </div>
+          </div>
         </div>
-      </div>
+        @endif
+      @endfor
+
       <div class="hr-line-dashed"></div>
       <div class="form-group">
           <div class="col-sm-4 col-sm-offset-2">

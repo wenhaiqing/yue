@@ -84,6 +84,10 @@ class CategoryController extends BaseController
     public function edit($id)
     {
         $result = $this->service->edit($id);
+        $res = $result['category']->toArray();
+        $norms = unserialize($res['norms']);
+        $result['norms'] = $norms;
+        //dd($result);
         return view(getThemeView('category.edit'))->with($result);
     }
 
@@ -96,7 +100,9 @@ class CategoryController extends BaseController
      */
     public function update(CategoryRequest $request, $id)
     {
-        $result = $this->service->update($request->all(), $id);
+        $res = $request ->all();
+        $res['norms'] = serialize($res['norms']);
+        $result = $this->service->update($res, $id);
         return response()->json($result);
     }
 
