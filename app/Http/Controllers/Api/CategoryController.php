@@ -20,4 +20,13 @@ class CategoryController extends Controller
         $data['category'] = $category;
         return response()->json($data);
     }
+
+    public function getCategorySon(Request $request){
+        $res = $request->all();
+        $id = $res['id'];
+        $category = Category::where('pid', $id)->orderBy('sort', 'desc')->get();
+
+        $data['category'] = $category;
+        return response()->json($data);
+    }
 }
