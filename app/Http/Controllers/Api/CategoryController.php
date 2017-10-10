@@ -9,6 +9,9 @@ use Cache;
 
 class CategoryController extends Controller
 {
+    /*
+     * APP分类列表页的顶级菜单
+     */
     public function index(){
         if (Cache::has(config('admin.global.cache.app_topcategory_categoryList'))) {
             $category = Cache::get(config('admin.global.cache.app_topcategory_categoryList'));
@@ -20,7 +23,9 @@ class CategoryController extends Controller
         $data['category'] = $category;
         return response()->json($data);
     }
-
+    /*
+     * APP分类列表页的顶级分类下的子菜单
+     */
     public function getCategorySon(Request $request){
         $res = $request->all();
         $id = $res['id'];
@@ -29,4 +34,18 @@ class CategoryController extends Controller
         $data['category'] = $category;
         return response()->json($data);
     }
+
+    /*
+     * app发布技能需要获取的分类详情
+     */
+    public function getcategoryware(Request $request){
+        $res = $request->all();
+        $id = $res['id'];
+        $category = Category::where('id', $id)->get();
+
+        $data['category'] = $category;
+        return response()->json($data);
+    }
+
+
 }

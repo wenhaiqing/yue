@@ -21,7 +21,8 @@ Route::group(['namespace' => 'Api', 'middleware' => ['auth:api']],function ($rou
     $router->post('/user/avatar','UserController@uploadavatar');
     $router->get('/topcategory','CategoryController@index');
     $router->post('/topcategory','CategoryController@getCategorySon');
-    
+    $router->post('/getcategoryware','CategoryController@getcategoryware');
+
 
 
 });
