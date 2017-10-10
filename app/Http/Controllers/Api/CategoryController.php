@@ -42,6 +42,7 @@ class CategoryController extends Controller
         $res = $request->all();
         $id = $res['id'];
         $category = Category::where('id', $id)->get();
+        $category[0]['norms'] = unserialize($category[0]['norms']);
 
         $data['category'] = $category;
         return response()->json($data);
