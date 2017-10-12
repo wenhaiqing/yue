@@ -7,6 +7,8 @@ use App\Http\Controllers\Controller;
 use App\Services\Admin\CategoryService;
 use App\Http\Requests\Admin\CategoryRequest;
 use App\Models\Category;
+use App\Models\Norm;
+use App\Models\Para;
 class CategoryController extends BaseController
 {
 
@@ -46,9 +48,9 @@ class CategoryController extends BaseController
      */
     public function store(CategoryRequest $request)
     {
+
         $res = $request ->all();
         $res['norms'] = serialize($res['norms']);
-
         if($res['file']){
             $path = $this->uploadqiniu($res['file']);
             if($path){
@@ -56,6 +58,23 @@ class CategoryController extends BaseController
             }
         }
         $result = $this->service->store($res);
+        $cateid = $result['status']->id;
+        $norms = $request->norms;
+        $nodata['cate_id'] = $cateid;
+        for($i=0;$i<count($norms);$i++){
+            if($norms[$i]['norm']){
+                $nodata['title'] = $norms[$i]['norm'];
+                $normres = Norm::create($nodata);
+                $padata['norm_id'] = $normres->id;
+                for($j=0;$j<count($norms[$i]['para']);$j++){
+                    if($norms[$i]['para'][$j]){
+                        $padata['name'] = $norms[$i]['para'][$j];
+                        $parares = Para::create($padata);
+                    }
+                }
+            }
+        }
+
         flash(trans($result['message']), 'success')->important();
         
         return redirect()->route('category.index');

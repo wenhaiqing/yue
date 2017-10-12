@@ -44,21 +44,7 @@
           <input type="file" name="file">
         </div>
       </div>
-      <div class="hr-line-dashed"></div>
-      <div class="form-group">
-        <label class="col-sm-2 control-label">{{trans('category.norms')}}</label>
-        <div class="col-sm-10">
-          <input type="text" class="form-control" value="" placeholder="例如:自驾分类的车辆来源,车辆类型，这里只能填单个" name="norms[0][norm]">
-        </div>
-      </div>
-      <div class="hr-line-dashed"></div>
-      <div class="form-group">
-        <label class="col-sm-2 control-label">{{trans('category.norms_para')}}</label>
-        <div class="col-sm-10">
-          <input type="text" class="form-control" value="" placeholder="例如:车辆类型有轿车，越野车，这里多个用英文逗号分隔" name="norms[0][para]">
-        </div>
-      </div>
-      @for ($i = 1; $i < 10; $i++)
+      @for ($i = 0; $i < 10; $i++)
         <div id="norms_{{$i}}" style="display:none">
         <div class="hr-line-dashed"></div>
         <div class="form-group">
@@ -70,8 +56,20 @@
         <div class="hr-line-dashed"></div>
         <div class="form-group">
           <label class="col-sm-2 control-label">{{trans('category.norms_para')}}{{$i}}</label>
-          <div class="col-sm-10">
-            <input type="text" class="form-control" value="" placeholder="例如:车辆类型有轿车，越野车，这里多个用英文逗号分隔" name="norms[{{$i}}][para]">
+          <div class="col-sm-2">
+            <input type="text" class="form-control" value="" placeholder="" name="norms[{{$i}}][para][]">
+          </div>
+          @for ($j = 1; $j < 10; $j++)
+            <div id="paras_{{$i}}_{{$j}}" class="paras_{{$i}}" style="display:none">
+                <div class="col-sm-2">
+                  <input type="text" class="form-control" value="" placeholder="" name="norms[{{$i}}][para][]">
+                </div>
+            </div>
+          @endfor
+          <div class="col-sm-1">
+            <button id="btn_add_normpara{{$i}}" onclick="showpara('{{$i}}');" type="button" class="btn btn-warning">
+              <span class="glyphicon glyphicon-plus"></span>
+            </button>
           </div>
         </div>
         </div>
@@ -107,7 +105,7 @@
       max: 100,
       from: 0
   });
-  var set_begin_num = 1;
+  var set_begin_num = 0;
 
   $('#bt_add_keyword').click(function(){
 
@@ -122,4 +120,13 @@
     set_begin_num++;
 
   });
+  function showpara(i) {
+    $(".paras_"+i).each(function(){
+      //判断每一个div，其css中display是否为block
+      if($(this).css("display")=="none"){
+        $(this).show();return false;
+      }
+    });
+  }
+
 </script>
