@@ -117,7 +117,6 @@ class CategoryController extends BaseController
     public function update(CategoryRequest $request, $id)
     {
         $res = $request ->all();
-        //dd($res);
         $res['norms'] = serialize($res['norms']);
         $result = $this->service->update($res, $id);
         $cateid = decodeId($id,'category');

@@ -61,12 +61,10 @@
             <div class="form-group">
               <label class="col-sm-2 control-label">{{trans('category.norms_para')}}{{$i}}</label>
               @for($j=0;$j< count($category->norm[$i]->para);$j++)
-                @if($category->norm[$i]->para[$j]->name)
                   <div class="col-sm-2">
                     <input type="hidden" value="{{$category->norm[$i]->para[$j]->id}}" name="norms[{{$i}}][para][{{$j}}][id]">
                     <input type="text" class="form-control" value="{{$category->norm[$i]->para[$j]->name}}" placeholder="" name="norms[{{$i}}][para][{{$j}}][para]">
                   </div>
-                @endif
               @endfor
               @for($j=count($category->norm[$i]->para);$j<10;$j++)
                 <div id="paras_{{$i}}_{{$j}}" class="paras_{{$i}}" style="display:none">
