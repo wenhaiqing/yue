@@ -103,9 +103,6 @@ class CategoryController extends BaseController
     public function edit($id)
     {
         $result = $this->service->edit($id);
-        $res = $result['category']->toArray();
-        $norms = unserialize($res['norms']);
-        $result['norms'] = $norms;
         //dd($result);
         return view(getThemeView('category.edit'))->with($result);
     }
@@ -120,8 +117,44 @@ class CategoryController extends BaseController
     public function update(CategoryRequest $request, $id)
     {
         $res = $request ->all();
+        //dd($res);
         $res['norms'] = serialize($res['norms']);
         $result = $this->service->update($res, $id);
+        $cateid = decodeId($id,'category');
+        $norms = $request->norms;
+        $nodata['cate_id'] = $cateid;
+        for($i=0;$i<count($norms);$i++){
+            if($norms[$i]['id']){
+                $nodata['title'] = $norms[$i]['norm'];
+                //$nodata['id'] = $norms[$i]['id'];
+                $normres = Norm::where('id',$norms[$i]['id'])->update($nodata);
+                $padata['norm_id'] = $norms[$i]['id'];
+                for($j=0;$j<count($norms[$i]['para']);$j++){
+                    if($norms[$i]['para'][$j]['id']){
+                        $padata['name'] = $norms[$i]['para'][$j]['para'];
+                        //$padata['id'] = $norms[$i]['para'][$i]['id'];
+                        $parares = Para::where('id',$norms[$i]['para'][$i]['id'])->update($padata);
+                    }else{
+                        if($norms[$i]['para'][$j]['para']){
+                            $padata['name'] = $norms[$i]['para'][$j]['para'];
+                            $parares = Para::create($padata);
+                        }
+                    }
+                }
+            }else{
+                if($norms[$i]['norm']){
+                    $nodata['title'] = $norms[$i]['norm'];
+                    $normres = Norm::create($nodata);
+                    $padata['norm_id'] = $normres->id;
+                    for($j=0;$j<count($norms[$i]['para']);$j++){
+                        if($norms[$i]['para'][$j]){
+                            $padata['name'] = $norms[$i]['para'][$j];
+                            $parares = Para::create($padata);
+                        }
+                    }
+                }
+            }
+        }
         return response()->json($result);
     }
 

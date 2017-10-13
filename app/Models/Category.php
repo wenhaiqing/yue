@@ -11,4 +11,9 @@ class Category extends Model implements Transformable
     use TransformableTrait;
 
     protected $fillable = ['pid', 'name', 'url', 'hot', 'description', 'sort','norms'];
+
+    public function norm()
+    {
+        return $this->hasMany('App\Models\Norm','cate_id');
+    }
 }

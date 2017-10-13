@@ -208,6 +208,7 @@ Eof
 			$user = UserRepositoryEloquent::with(['userPermissions', 'roles'])->find(decodeId($id, $this->module));
 			$permissions = $this->getAllPermissions();
 			$roles = $this->getAllRole();
+			dump($user->toArray());dump($permissions);dd($roles->toArray());
 			return compact('user', 'permissions', 'roles');
 		} catch (Exception $e) {
 			flash(trans('common.find_error'), 'danger');

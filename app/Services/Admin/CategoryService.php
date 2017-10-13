@@ -124,7 +124,8 @@ class CategoryService {
 	{
 		try {
 			$categorys = $this->getcategoryList();
-			$category = CategoryRepositoryEloquent::find(decodeId($id, $this->module));
+			$category = CategoryRepositoryEloquent::with('norm.para')->find(decodeId($id, $this->module));
+			//dd($category->norm[0]->para);
 			return compact('categorys', 'category');
 		} catch (Exception $e) {
 			abort(500);
