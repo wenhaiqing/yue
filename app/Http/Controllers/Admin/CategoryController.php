@@ -147,8 +147,8 @@ class CategoryController extends BaseController
                     $normres = Norm::create($nodata);
                     $padata['norm_id'] = $normres->id;
                     for($j=0;$j<count($norms[$i]['para']);$j++){
-                        if($norms[$i]['para'][$j]){
-                            $padata['name'] = $norms[$i]['para'][$j];
+                        if($norms[$i]['para'][$j]['para']){
+                            $padata['name'] = $norms[$i]['para'][$j]['para'];
                             $parares = Para::create($padata);
                         }
                     }
