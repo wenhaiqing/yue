@@ -132,7 +132,8 @@ class CategoryController extends BaseController
                     if($norms[$i]['para'][$j]['id']){
                         $padata['name'] = $norms[$i]['para'][$j]['para'];
                         //$padata['id'] = $norms[$i]['para'][$i]['id'];
-                        $parares = Para::where('id',$norms[$i]['para'][$i]['id'])->update($padata);
+                        $parares = Para::where('id',$norms[$i]['para'][$j]['id'])->update($padata);
+                        //dd($parares);
                     }else{
                         if($norms[$i]['para'][$j]['para']){
                             $padata['name'] = $norms[$i]['para'][$j]['para'];

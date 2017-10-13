@@ -47,7 +47,6 @@
       </div>
       <div class="hr-line-dashed"></div>
       @for ($i = 0; $i < count($category->norm); $i++)
-        @if($category->norm[$i]->title)
           <div id="norms_{{$i}}">
             <div class="hr-line-dashed"></div>
             <div class="form-group">
@@ -81,7 +80,6 @@
               </div>
             </div>
           </div>
-        @endif
       @endfor
       @for ($i = count($category->norm); $i < 10; $i++)
         <div id="norms_{{$i}}" style="display:none">
