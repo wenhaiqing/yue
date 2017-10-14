@@ -122,39 +122,8 @@ class CategoryController extends BaseController
         $cateid = decodeId($id,'category');
         $norms = $request->norms;
         $nodata['cate_id'] = $cateid;
-        for($i=0;$i<count($norms);$i++){
-            if($norms[$i]['id']){
-                $nodata['title'] = $norms[$i]['norm'];
-                //$nodata['id'] = $norms[$i]['id'];
-                $normres = Norm::where('id',$norms[$i]['id'])->update($nodata);
-                $padata['norm_id'] = $norms[$i]['id'];
-                for($j=0;$j<count($norms[$i]['para']);$j++){
-                    if($norms[$i]['para'][$j]['id']){
-                        $padata['name'] = $norms[$i]['para'][$j]['para'];
-                        //$padata['id'] = $norms[$i]['para'][$i]['id'];
-                        $parares = Para::where('id',$norms[$i]['para'][$j]['id'])->update($padata);
-                        //dd($parares);
-                    }else{
-                        if($norms[$i]['para'][$j]['para']){
-                            $padata['name'] = $norms[$i]['para'][$j]['para'];
-                            $parares = Para::create($padata);
-                        }
-                    }
-                }
-            }else{
-                if($norms[$i]['norm']){
-                    $nodata['title'] = $norms[$i]['norm'];
-                    $normres = Norm::create($nodata);
-                    $padata['norm_id'] = $normres->id;
-                    for($j=0;$j<count($norms[$i]['para']);$j++){
-                        if($norms[$i]['para'][$j]['para']){
-                            $padata['name'] = $norms[$i]['para'][$j]['para'];
-                            $parares = Para::create($padata);
-                        }
-                    }
-                }
-            }
-        }
+        $res = $this->normpara($norms,$cateid);
+
         return response()->json($result);
     }
 
@@ -202,6 +171,10 @@ class CategoryController extends BaseController
     {
         $norms = $request->norms;
         $res = $this->normpara($norms,0);
+        if(!$res){
+            flash(trans('common.edit_success'), 'success')->important();
+            return redirect()->route('category.index');
+        }
     }
 
     /*
