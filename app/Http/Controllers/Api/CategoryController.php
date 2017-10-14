@@ -41,10 +41,9 @@ class CategoryController extends Controller
     public function getcategoryware(Request $request){
         $res = $request->all();
         $id = $res['id'];
-        $category = Category::where('id', $id)->get();
-        $category[0]['norms'] = unserialize($category[0]['norms']);
-
+        $category = Category::with(['norm.para'])->find($id);
         $data['category'] = $category;
+
         return response()->json($data);
     }
 

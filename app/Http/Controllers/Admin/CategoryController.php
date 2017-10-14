@@ -50,7 +50,7 @@ class CategoryController extends BaseController
     {
 
         $res = $request ->all();
-        $res['norms'] = serialize($res['norms']);
+       // $res['norms'] = serialize($res['norms']);
         if($res['file']){
             $path = $this->uploadqiniu($res['file']);
             if($path){
@@ -117,7 +117,7 @@ class CategoryController extends BaseController
     public function update(CategoryRequest $request, $id)
     {
         $res = $request ->all();
-        $res['norms'] = serialize($res['norms']);
+//        $res['norms'] = serialize($res['norms']);
         $result = $this->service->update($res, $id);
         $cateid = decodeId($id,'category');
         $norms = $request->norms;
