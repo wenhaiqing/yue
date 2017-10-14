@@ -6,6 +6,7 @@ var MenuList = function() {
     var menu = {
       box:'.menuBox',
       createMenu:'.create_menu',
+      addnormMenu:'.addnorm_menu',
       close:'.close-link',
       createForm:'#createBox',
       middleBox:'.middle-box',
@@ -19,6 +20,17 @@ var MenuList = function() {
     $(menu.box).on('click',menu.createMenu,function () {
       $.ajax({
         url:'/admin/category/create',
+        dataType:'html',
+        success:function (htmlData) {
+          $(menu.middleBox).removeClass('fadeInRightBig').addClass('bounceOut').hide();
+          $(menu.box).append(htmlData);
+        }
+      });
+    });
+
+    $(menu.box).on('click',menu.addnormMenu,function () {
+      $.ajax({
+        url:'/admin/category/addnorm',
         dataType:'html',
         success:function (htmlData) {
           $(menu.middleBox).removeClass('fadeInRightBig').addClass('bounceOut').hide();
@@ -99,6 +111,7 @@ var MenuList = function() {
         }
       });
     });
+
     /**
      * 修改分类数据
      * @author wenhaiqing
@@ -166,6 +179,8 @@ var MenuList = function() {
         }
       });
     });
+
+
   };
 
   return {

@@ -187,4 +187,58 @@ class CategoryController extends BaseController
         $this->service->cacheClear();
         return redirect()->route('category.index');
     }
+
+    /**
+     * 给分类添加公共规格
+     */
+    public function addnorm()
+    {
+        $res = Norm::with('para')->where('cate_id',0)->get();
+        $res = $res->toArray();
+        return view(getThemeView('category.addnorm'))->with(compact('res'));
+    }
+
+    public function addnormstore(Request $request)
+    {
+        $norms = $request->norms;
+        $res = $this->normpara($norms,0);
+    }
+
+    /*
+     * 单独处理多种规格以及多种规格参数的插入和更新
+     */
+    public function normpara($norms,$id)
+    {
+        $nodata['cate_id'] = $id;
+        for($i=0;$i<count($norms);$i++){
+            if($norms[$i]['id']){
+                $nodata['title'] = $norms[$i]['norm'];
+                $normres = Norm::where('id',$norms[$i]['id'])->update($nodata);
+                $padata['norm_id'] = $norms[$i]['id'];
+                for($j=0;$j<count($norms[$i]['para']);$j++){
+                    if($norms[$i]['para'][$j]['id']){
+                        $padata['name'] = $norms[$i]['para'][$j]['para'];
+                        $parares = Para::where('id',$norms[$i]['para'][$j]['id'])->update($padata);
+                    }else{
+                        if($norms[$i]['para'][$j]['para']){
+                            $padata['name'] = $norms[$i]['para'][$j]['para'];
+                            $parares = Para::create($padata);
+                        }
+                    }
+                }
+            }else{
+                if($norms[$i]['norm']){
+                    $nodata['title'] = $norms[$i]['norm'];
+                    $normres = Norm::create($nodata);
+                    $padata['norm_id'] = $normres->id;
+                    for($j=0;$j<count($norms[$i]['para']);$j++){
+                        if($norms[$i]['para'][$j]['para']){
+                            $padata['name'] = $norms[$i]['para'][$j]['para'];
+                            $parares = Para::create($padata);
+                        }
+                    }
+                }
+            }
+        }
+    }
 }

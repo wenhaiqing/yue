@@ -104,11 +104,12 @@ Eof;
 		$title = $canCreateCategory ?  trans('category.welcome'):trans('category.sorry');
 		$desc = $canCreateCategory ? trans('category.description'):trans('category.description_sorry');
 		$createButton = $canCreateCategory ? '<br><a href="javascript:;" class="btn btn-primary m-t create_menu">'.trans('category.create').'</a>':'';
+		$addnormButton = $canCreateCategory ? '<br><a href="javascript:;" class="btn btn-primary m-t addnorm_menu">'.trans('category.addnorm').'</a>':'';
 		return <<<Eof
 		<div class="middle-box text-center animated fadeInRightBig">
             <h3 class="font-bold">{$title}</h3>
             <div class="error-desc">
-                {$desc}{$createButton}
+                {$desc}{$createButton}{$addnormButton}
             </div>
         </div>
 Eof;

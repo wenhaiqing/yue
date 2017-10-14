@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Models\Category;
 use Cache;
+use App\Models\Norm;
 
 class CategoryController extends Controller
 {
@@ -42,8 +43,10 @@ class CategoryController extends Controller
         $res = $request->all();
         $id = $res['id'];
         $category = Category::with(['norm.para'])->find($id);
+        $norm = Norm::with('para')->where('cate_id','0')->get();
+        $norm = $norm->toArray();
         $data['category'] = $category;
-
+        $data['norm'] = $norm;
         return response()->json($data);
     }
 

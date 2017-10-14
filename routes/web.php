@@ -36,7 +36,10 @@ Route::group(['prefix' => 'admin','namespace' => 'Admin', 'middleware' => ['auth
     $router->resource('menu','MenuController');
     //分类
     $router->get('category/clear','CategoryController@cacheClear');
+    $router->get('category/addnorm','CategoryController@addnorm');
+    $router->post('category/addnormstore','CategoryController@addnormstore');
     $router->resource('category','CategoryController');
+
     //首页幻灯片
     $router->get('slide/clear','SlideController@cacheClear');
     $router->resource('slide','SlideController');

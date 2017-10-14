@@ -37,7 +37,9 @@
       <div class="ibox animated fadeInRightBig">
         <div class="ibox-title">
             <h5>{!!trans('category.desc')!!}</h5>
+
         </div>
+
         <div class="ibox-content">
           <div class="dd" id="nestable">
             <ol class="dd-list">
