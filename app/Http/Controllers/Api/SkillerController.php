@@ -33,8 +33,15 @@ class SkillerController extends Controller
         $res = $request->all();
        // $res['para_id'] = serialize($res['para_id']);
         $skill = Skiller::create($res);
+        if ($skill){
+            $data['status'] = 1;
+            $data['message'] = '添加成功';
+        }else{
+            $data['status'] = 0;
+            $data['message'] = '添加失败';
+        }
 
-        return response()->json($skill);
+        return response()->json($data);
     }
 
 
