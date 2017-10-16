@@ -55,7 +55,7 @@ class CategoryController extends BaseController
             $path = $this->uploadqiniu($res['file']);
             if($path){
                 $res['url'] = $path;
-            }
+            }   
         }
         $result = $this->service->store($res);
         $cateid = $result['status']->id;

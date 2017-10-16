@@ -22,6 +22,7 @@ return [
 		'categoryList' => 'categoryList',
 		'slideList' => 'slideList',
 		'toplineList' => 'toplineList',
-		'app_home_categoryList' => 'app_home_categoryList'
+		'app_home_categoryList' => 'app_home_categoryList',
+		'app_skillerList' => 'app_skillerList'
 	],
 ];
