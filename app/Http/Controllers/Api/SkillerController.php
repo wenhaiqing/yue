@@ -15,13 +15,13 @@ class SkillerController extends Controller
      */
     public function index(){
         if (Cache::has(config('admin.global.cache.app_skillerList'))) {
-            $category = Cache::get(config('admin.global.cache.app_skillerList'));
+            $skill = Cache::get(config('admin.global.cache.app_skillerList'));
         }else{
-            $category = Skiller::where('pid', 0)->orderBy('sort', 'desc')->get();
-            Cache::forever(config('admin.global.cache.app_skillerList'),$category);
+            $skill = Skiller::all();
+            Cache::forever(config('admin.global.cache.app_skillerList'),$skill);
         }
 
-        $data['category'] = $category;
+        $data['skill'] = $skill;
         return response()->json($data);
     }
     /*
