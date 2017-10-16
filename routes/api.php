@@ -23,6 +23,10 @@ Route::group(['namespace' => 'Api', 'middleware' => ['auth:api']],function ($rou
     $router->post('/topcategory','CategoryController@getCategorySon');
     $router->post('/getcategoryware','CategoryController@getcategoryware');
     $router->post('/skiller/add','SkillerController@add');
+    $router->post('/skiller/index','SkillerController@index');
+    $router->post('/skiller/update','SkillerController@update');
+    $router->post('/skiller/delete','SkillerController@delete');
+    $router->post('/skiller/edit','SkillerController@edit');
 
 
 
