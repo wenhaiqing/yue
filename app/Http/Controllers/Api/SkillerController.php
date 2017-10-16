@@ -29,7 +29,7 @@ class SkillerController extends Controller
      */
     public function add(Request $request){
         $res = $request->all();
-        $res['para_id'] = serialize($res['para_id']);
+       // $res['para_id'] = serialize($res['para_id']);
         $skill = Skiller::create($res);
 
         return response()->json($skill);
