@@ -14,12 +14,14 @@ class SkillerController extends Controller
      * APP获取技师
      */
     public function index(){
-        if (Cache::has(config('admin.global.cache.app_skillerList'))) {
-            $skill = Cache::get(config('admin.global.cache.app_skillerList'));
-        }else{
-            $skill = Skiller::all();
-            Cache::forever(config('admin.global.cache.app_skillerList'),$skill);
-        }
+//        if (Cache::has(config('admin.global.cache.app_skillerList'))) {
+//            $skill = Cache::get(config('admin.global.cache.app_skillerList'));
+//        }else{
+//            $skill = Skiller::all();
+//            Cache::forever(config('admin.global.cache.app_skillerList'),$skill);
+//        }
+        $skill = Skiller::all();
+        $skill[0]['para_id'] = unserialize($skill[0]['para_id']);
 
         $data['skill'] = $skill;
         return response()->json($data);
