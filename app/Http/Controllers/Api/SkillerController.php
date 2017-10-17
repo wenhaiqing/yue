@@ -44,6 +44,17 @@ class SkillerController extends Controller
         return response()->json($data);
     }
 
+    /*
+     * app 更新技师信息
+     */
+    public function update(Request $request)
+    {
+        $res = $request->all();
+        $cate_id = $res['cate_id'];
+        $result = Skiller::where('cate_id',$cate_id)->update($res);
+        return response()->json($result);
+    }
+
 
 
 }
