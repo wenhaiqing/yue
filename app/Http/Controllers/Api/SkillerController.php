@@ -36,7 +36,7 @@ class SkillerController extends Controller
         if ($skill){
             $data['status'] = 1;
             $data['message'] = '添加成功';
-            $data['date'] = $skill;
+            $data['data'] = $skill;
         }else{
             $data['status'] = 0;
             $data['message'] = '添加失败';
