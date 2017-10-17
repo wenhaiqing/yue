@@ -53,7 +53,14 @@ class SkillerController extends Controller
         $res = $request->all();
         $id = $res['id'];
         $result = Skiller::where('id',$id)->update($res);
-        return response()->json($result);
+        if ($result){
+            $data['status'] = 1;
+            $data['message'] = '更新成功';
+        }else{
+            $data['status'] = 0;
+            $data['message'] = '更新失败';
+        }
+        return response()->json($data);
     }
 
 
