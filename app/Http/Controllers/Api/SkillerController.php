@@ -36,6 +36,7 @@ class SkillerController extends Controller
         if ($skill){
             $data['status'] = 1;
             $data['message'] = '添加成功';
+            $data['date'] = $skill;
         }else{
             $data['status'] = 0;
             $data['message'] = '添加失败';
@@ -50,8 +51,8 @@ class SkillerController extends Controller
     public function update(Request $request)
     {
         $res = $request->all();
-        $cate_id = $res['cate_id'];
-        $result = Skiller::where('cate_id',$cate_id)->update($res);
+        $id = $res['id'];
+        $result = Skiller::where('id',$id)->update($res);
         return response()->json($result);
     }
 
