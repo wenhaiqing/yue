@@ -6,7 +6,6 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Models\Skiller;
 use Cache;
-use App\Models\Norm;
 
 class SkillerController extends Controller
 {
