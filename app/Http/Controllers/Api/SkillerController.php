@@ -13,14 +13,12 @@ class SkillerController extends Controller
      * APP获取技师
      */
     public function index(){
-//        if (Cache::has(config('admin.global.cache.app_skillerList'))) {
-//            $skill = Cache::get(config('admin.global.cache.app_skillerList'));
-//        }else{
-//            $skill = Skiller::all();
-//            Cache::forever(config('admin.global.cache.app_skillerList'),$skill);
-//        }
-        $skill = Skiller::all();
-        $skill[0]['para_id'] = unserialize($skill[0]['para_id']);
+        if (Cache::has(config('admin.global.cache.app_skillerList'))) {
+            $skill = Cache::get(config('admin.global.cache.app_skillerList'));
+        }else{
+            $skill = Skiller::all();
+            Cache::forever(config('admin.global.cache.app_skillerList'),$skill);
+        }
 
         $data['skill'] = $skill;
         return response()->json($data);
@@ -30,9 +28,12 @@ class SkillerController extends Controller
      */
     public function add(Request $request){
         $res = $request->all();
+        $user = $request->user();
+        $res['uid'] = $user->id;
        // $res['para_id'] = serialize($res['para_id']);
         $skill = Skiller::create($res);
         if ($skill){
+            Cache::forget(config('admin.global.cache.app_skillerList'));
             $data['status'] = 1;
             $data['message'] = '添加成功';
             $data['data'] = $skill;
@@ -53,6 +54,7 @@ class SkillerController extends Controller
         $id = $res['id'];
         $result = Skiller::where('id',$id)->update($res);
         if ($result){
+            Cache::forget(config('admin.global.cache.app_skillerList'));
             $data['status'] = 1;
             $data['message'] = '更新成功';
         }else{
