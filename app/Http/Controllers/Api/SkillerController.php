@@ -30,7 +30,6 @@ class SkillerController extends Controller
         $res = $request->all();
         $user = $request->user();
         $res['uid'] = $user->id;
-       // $res['para_id'] = serialize($res['para_id']);
         $skill = Skiller::create($res);
         if ($skill){
             Cache::forget(config('admin.global.cache.app_skillerList'));

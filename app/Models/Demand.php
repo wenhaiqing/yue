@@ -12,7 +12,7 @@ class Demand extends Model implements Transformable
 
     protected $table = 'demand';
 
-    protected $fillable = ['cate_id','para_id', 'validday', 'validtime', 'yuetime', 'needpara', 'sincerity'];
+    protected $fillable = ['uid','cate_id','para_id', 'validday', 'validtime', 'yuetime', 'needpara', 'sincerity'];
 
 
 }

@@ -12,7 +12,7 @@ class Skiller extends Model implements Transformable
 
     protected $table = 'skiller';
 
-    protected $fillable = ['cate_id','para_id', 'introduce', 'difference', 'price', 'location', 'location_x','location_y','education','job','prize','question','photo','video'];
+    protected $fillable = ['uid','cate_id','para_id', 'introduce', 'difference', 'price', 'location', 'location_x','location_y','education','job','prize','question','photo','video'];
 
 
 }
