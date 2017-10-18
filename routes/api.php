@@ -27,8 +27,8 @@ Route::group(['namespace' => 'Api', 'middleware' => ['auth:api']],function ($rou
     $router->post('/skiller/update','SkillerController@update');
     $router->post('/skiller/delete','SkillerController@delete');
     $router->post('/skiller/edit','SkillerController@edit');
-    $router->post('/demand/add','SkillerController@add');
-    $router->post('/demand/index','SkillerController@index');
+    $router->post('/demand/add','DemandController@add');
+    $router->post('/demand/index','DemandController@index');
 
 
 
