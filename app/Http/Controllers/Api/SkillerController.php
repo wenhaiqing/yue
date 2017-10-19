@@ -63,6 +63,33 @@ class SkillerController extends Controller
         return response()->json($data);
     }
 
+    /*
+     * APP上传技师图片
+     */
+    public function upload(Request $request)
+    {
+        $attr = $request->all();
+        $user = $request->user();
+        $uid = $user->id;
+        $attr['file'] = $_FILES["file"];
+        return response()->json($attr);
+//        if($attr['file']){
+//            $path = $this->app_uploadqiniu($attr['file']);
+//            if($path){
+//                $res['avatar'] = $path;
+//                $result = $this->service->app_update($res,$uid);
+//                if($result){
+//                    $res['message'] = '更新成功';
+//                    $res['status'] = '1';
+//                }else{
+//                    $res['message'] = '更新失败';
+//                    $res['status'] = '0';
+//                }
+//                return response()->json($res);
+//            }
+//        }
+    }
+
 
 
 }
