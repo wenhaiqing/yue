@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Api;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Models\Skiller;
+use App\Models\Picture;
 use Cache;
 
 class SkillerController extends Controller
@@ -69,25 +70,23 @@ class SkillerController extends Controller
     public function upload(Request $request)
     {
         $attr = $request->all();
-        $user = $request->user();
-        $uid = $user->id;
-        //$attr['file'] = $_FILES["file"];
-        return response()->json($_FILES);
-//        if($attr['file']){
-//            $path = $this->app_uploadqiniu($attr['file']);
-//            if($path){
-//                $res['avatar'] = $path;
-//                $result = $this->service->app_update($res,$uid);
-//                if($result){
-//                    $res['message'] = '更新成功';
-//                    $res['status'] = '1';
-//                }else{
-//                    $res['message'] = '更新失败';
-//                    $res['status'] = '0';
-//                }
-//                return response()->json($res);
-//            }
-//        }
+        $attr['file'] = $_FILES["file"];
+        if($attr['file']){
+            $path = $this->app_uploadqiniu($attr['file']);
+            if($path){
+                $attr['path'] = $path;
+                $result = Picture::create($attr);
+                if($result){
+                    $res['message'] = '上传成功';
+                    $res['status'] = '1';
+                    $res['data'] = $result;
+                }else{
+                    $res['message'] = '上传失败';
+                    $res['status'] = '0';
+                }
+                return response()->json($res);
+            }
+        }
     }
 
 
