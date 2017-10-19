@@ -72,7 +72,7 @@ class SkillerController extends Controller
         $user = $request->user();
         $uid = $user->id;
         $attr['file'] = $_FILES["file"];
-        return response()->json($attr);
+        return response()->json($_FILES);
 //        if($attr['file']){
 //            $path = $this->app_uploadqiniu($attr['file']);
 //            if($path){
