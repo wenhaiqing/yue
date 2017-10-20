@@ -46,6 +46,10 @@ Route::group(['prefix' => 'admin','namespace' => 'Admin', 'middleware' => ['auth
     //首页头条
     $router->get('topline/clear','ToplineController@cacheClear');
     $router->resource('topline','ToplineController');
+    //技师
+    $router->resource('skiller','SkillerController');
+    //需求
+    $router->resource('demand','DemandController');
 
     $router->get('setting/{lang}', 'SettingController@language');
 
