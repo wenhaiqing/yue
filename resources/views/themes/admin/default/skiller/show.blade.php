@@ -30,7 +30,7 @@
     <div class="col-lg-12">
       <div class="ibox float-e-margins">
         <div class="ibox-title">
-          <h5>{!!trans('common.show').$skiller->uid->phone!!}</h5>
+          <h5>{!!trans('common.show').$skiller->user->phone!!}</h5>
           <div class="ibox-tools">
               <a class="collapse-link">
                   <i class="fa fa-chevron-up"></i>
@@ -45,14 +45,14 @@
             <div class="form-group">
               <label class="col-sm-2 control-label">{{trans('skiller.uid')}}</label>
               <div class="col-sm-10">
-                <p class="form-control-static">{{$skiller->uid->phone}}</p>
+                <p class="form-control-static">{{$skiller->user->phone}}</p>
               </div>
             </div>
             <div class="hr-line-dashed"></div>
             <div class="form-group">
               <label class="col-sm-2 control-label">{{trans('user.username')}}</label>
               <div class="col-sm-10">
-                <p class="form-control-static">{{$skiller->cate_id->name}}</p>
+                <p class="form-control-static">{{$skiller->cate->name}}</p>
               </div>
             </div>
             <div class="hr-line-dashed"></div>
