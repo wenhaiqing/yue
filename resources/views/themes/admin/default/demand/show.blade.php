@@ -30,7 +30,7 @@
     <div class="col-lg-12">
       <div class="ibox float-e-margins">
         <div class="ibox-title">
-          <h5>{!!trans('common.show').$->user->phone!!}</h5>
+          <h5>{!!trans('common.show').$demand->user->phone!!}</h5>
           <div class="ibox-tools">
               <a class="collapse-link">
                   <i class="fa fa-chevron-up"></i>
