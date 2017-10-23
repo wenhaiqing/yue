@@ -9,7 +9,7 @@ return array (
   'validday' => '有效期',
     'sincerity' =>'诚意金',
     'phone' => '用户手机号',
-    'cate' => '分类名',
+    'cate_name' => '分类名',
   'needpara' => '需求详情',
   'title' => '需求管理',
   'password' => '密码',
