@@ -132,7 +132,7 @@ Eof;
 					if (is_array($val)) {
 						foreach ($val as $k => $v) {
 							if($k == 'id'){
-								$html .= "<tr><td>".$val."</td><td>";
+								$html .= "<tr><td>".$v."</td><td>";
 							}
 							if($k == 'name'){
 								$html .= <<<Eof
