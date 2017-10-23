@@ -37,6 +37,9 @@ class SkillerController extends BaseController
     public function show($id)
     {
         $res = Skiller::all();
+        foreach ($res as $key=>$val){
+            dump($val.'--');
+        }
         dd($res);
 
         $result = $this->service->show($id);
