@@ -66,19 +66,19 @@
             <div class="form-group">
               <label class="col-sm-2 control-label">{{trans('skiller.difference')}}</label>
               <div class="col-sm-10">
-                <p class="form-control-static">{{$skiller->para_id}}</p>
+                <p class="form-control-static">{{$skiller->difference}}</p>
               </div>
             </div>
               <div class="hr-line-dashed"></div>
               <div class="form-group">
-                  <label class="col-sm-2 control-label">{{trans('user.permission')}}</label>
+                  <label class="col-sm-2 control-label">{{trans('skiller.para')}}</label>
                   <div class="col-sm-10">
                       <div class="ibox float-e-margins">
                           <table class="table table-bordered">
                               <thead>
                               <tr>
-                                  <th class="col-md-1 text-center">{{trans('role.module')}}</th>
-                                  <th class="col-md-10 text-center">{{trans('role.permission')}}</th>
+                                  <th class="col-md-1 text-center">{{trans('skiller.para_id')}}</th>
+                                  <th class="col-md-10 text-center">{{trans('skiller.para')}}</th>
                               </tr>
                               </thead>
                               <tbody>
