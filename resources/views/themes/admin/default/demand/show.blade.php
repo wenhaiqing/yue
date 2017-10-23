@@ -66,7 +66,7 @@
             <div class="form-group">
               <label class="col-sm-2 control-label">{{trans('demand.validday')}}</label>
               <div class="col-sm-10">
-                <p class="form-control-static">{{$demand->difference}}天</p>
+                <p class="form-control-static">{{$demand->validday}}天</p>
               </div>
             </div>
               <div class="hr-line-dashed"></div>
