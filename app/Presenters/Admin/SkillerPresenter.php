@@ -116,7 +116,7 @@ Eof;
 	public function showUserPara($para)
 	{
 		$html = '';
-		if (!$para) {
+		if ($para) {
 			// 将角色权限分组
 			$paraArray = [];
 //			foreach ($userPermissions as $v) {
@@ -124,7 +124,6 @@ Eof;
 //                $permissionArray[$temp[0]][] = $v->toArray();
 //            }
 			$paraArray = explode(',',$para);
-			return $paraArray;
 			if ($paraArray) {
 				foreach ($paraArray as $key => $permission) {
 					$html .= "<tr><td>".$permission."</td><td>";
