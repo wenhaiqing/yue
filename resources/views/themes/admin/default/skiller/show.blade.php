@@ -82,7 +82,7 @@
                               </tr>
                               </thead>
                               <tbody>
-                              {!! $skillerPresenter->showUserPara($skiller->para_id) !!}
+                              {!! dump($skillerPresenter->showUserPara($skiller->para_id)) !!}
                               </tbody>
                           </table>
                       </div>
