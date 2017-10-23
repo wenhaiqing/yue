@@ -38,7 +38,9 @@ class SkillerController extends BaseController
     {
         $res = Skiller::all();
         foreach ($res as $key=>$val){
-            dump($key.'--'.$val);
+            foreach ($val as $k=>$v){
+                dump($k.'--'.$v);
+            }
         }
         dd($res);
 
