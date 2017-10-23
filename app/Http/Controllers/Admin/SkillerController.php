@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Services\Admin\SkillerService;
+use App\Models\Skiller;
 class SkillerController extends BaseController
 {
 
