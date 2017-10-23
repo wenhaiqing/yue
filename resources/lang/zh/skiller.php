@@ -8,6 +8,8 @@ return array (
     'para' =>'所选参数',
   'introduce' => '服务介绍',
   'difference' => '特点',
+    'picture' => '技师图片',
+    'video' => '技师视频',
   'education' => '教育经历',
   'title' => '技师管理',
   'password' => '密码',

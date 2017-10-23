@@ -89,6 +89,43 @@
                   </div>
               </div>
 
+              <div class="hr-line-dashed"></div>
+              <div class="form-group">
+                  <label class="col-sm-2 control-label">{{trans('skiller.picture')}}</label>
+                  <div class="col-sm-10">
+                      <div class="ibox float-e-margins">
+                          <table class="table table-bordered">
+                              <thead>
+                              <tr>
+                                  <th class="col-md-1 text-center">{{trans('skiller.picture')}}</th>
+                              </tr>
+                              </thead>
+                              <tbody>
+                              {!! $skillerPresenter->showUserPicture($skiller->picture) !!}
+                              </tbody>
+                          </table>
+                      </div>
+                  </div>
+              </div>
+
+              <div class="hr-line-dashed"></div>
+              <div class="form-group">
+                  <label class="col-sm-2 control-label">{{trans('skiller.video')}}</label>
+                  <div class="col-sm-10">
+                      <div class="ibox float-e-margins">
+                          <table class="table table-bordered">
+                              <thead>
+                              <tr>
+                                  <th class="col-md-1 text-center">{{trans('skiller.video')}}</th>
+                              </tr>
+                              </thead>
+                              <tbody>
+                              {!! $skillerPresenter->showUserVideo($skiller->video) !!}
+                              </tbody>
+                          </table>
+                      </div>
+                  </div>
+              </div>
 
             <div class="hr-line-dashed"></div>
             <div class="form-group">

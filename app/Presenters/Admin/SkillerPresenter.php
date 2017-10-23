@@ -115,33 +115,75 @@ Eof;
 	 * @return [type]                                    [description]
 	 */
 	public function showUserPara($para)
-	{
-		$html = '';
-		if ($para) {
-			// 将角色权限分组
-			$paraArray = [];
+{
+	$html = '';
+	if ($para) {
+		// 将角色权限分组
+		$paraArray = [];
 //			foreach ($userPermissions as $v) {
 //                $temp = explode('.', $v->slug);
 //                $permissionArray[$temp[0]][] = $v->toArray();
 //            }
-			$paraArray = explode(',',$para);
-			$res = Para::whereIn('id',$paraArray)->get();
-			$res = $res->toArray();
-			if ($res) {
-				foreach ($res as $key => $val) {
-					if (is_array($val)) {
-						foreach ($val as $k => $v) {
-							if($k == 'id'){
-								$html .= "<tr><td>".$v."</td><td>";
-							}
-							if($k == 'name'){
-								$html .= <<<Eof
+		$paraArray = explode(',',$para);
+		$res = Para::whereIn('id',$paraArray)->get();
+		$res = $res->toArray();
+		if ($res) {
+			foreach ($res as $key => $val) {
+				if (is_array($val)) {
+					foreach ($val as $k => $v) {
+						if($k == 'id'){
+							$html .= "<tr><td>".$v."</td><td>";
+						}
+						if($k == 'name'){
+							$html .= <<<Eof
 							<div class="col-md-4">
 	                        	<label> {$v} </label>
 	                      	</div>
 Eof;
-							}
+						}
 
+					}
+				}
+				$html .= '</td></tr>';
+			}
+		}
+	}
+	return $html;
+}
+
+	public function showUserPicture($picture)
+	{
+		$html = '';
+		if ($picture) {
+			$res = $picture->toArray();
+			if ($res) {
+				foreach ($res as $key => $val) {
+					if (is_array($val)) {
+						foreach ($val as $k => $v) {
+							if($k == 'path'){
+								$html .= "<tr><td><img src='".$v."'></td><td>";
+							}
+						}
+					}
+					$html .= '</td></tr>';
+				}
+			}
+		}
+		return $html;
+	}
+
+	public function showUserPicture($video)
+	{
+		$html = '';
+		if ($video) {
+			$res = $video->toArray();
+			if ($res) {
+				foreach ($res as $key => $val) {
+					if (is_array($val)) {
+						foreach ($val as $k => $v) {
+							if($k == 'path'){
+								$html .= "<tr><td><img src='".$v."'></td><td>";
+							}
 						}
 					}
 					$html .= '</td></tr>';
