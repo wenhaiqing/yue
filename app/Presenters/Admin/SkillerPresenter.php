@@ -172,7 +172,7 @@ Eof;
 		return $html;
 	}
 
-	public function showUserPicture($video)
+	public function showUserVideo($video)
 	{
 		$html = '';
 		if ($video) {
