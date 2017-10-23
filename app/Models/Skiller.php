@@ -14,11 +14,11 @@ class Skiller extends Model implements Transformable
 
     protected $fillable = ['uid','cate_id','para_id', 'introduce', 'difference', 'price', 'location', 'location_x','location_y','education','job','prize','question','photo','video'];
 
-    public function uid(){
+    public function user(){
         return $this->hasOne('App\User','id','uid');
     }
 
-    public function cate_id()
+    public function cate()
     {
         return $this->hasOne('App\Models\Category','id','cate_id');
     }
