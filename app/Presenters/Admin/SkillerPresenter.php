@@ -124,6 +124,7 @@ Eof;
 //                $permissionArray[$temp[0]][] = $v->toArray();
 //            }
 			$paraArray = explode(',',$para);
+			return $paraArray;
 			if ($paraArray) {
 				foreach ($paraArray as $key => $permission) {
 					$html .= "<tr><td>".$permission."</td><td>";
