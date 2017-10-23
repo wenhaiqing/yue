@@ -1,7 +1,6 @@
 <?php
 namespace App\Presenters\Admin;
 use App\Models\Para;
-use App\Models\Skiller;
 
 class SkillerPresenter
 {
@@ -126,9 +125,9 @@ Eof;
 //                $permissionArray[$temp[0]][] = $v->toArray();
 //            }
 			$paraArray = explode(',',$para);
-			return Para::whereIn('id',$paraArray)->get();
-			if ($paraArray) {
-				foreach ($paraArray as $key => $permission) {
+			$res = Para::whereIn('id',$paraArray)->get();
+			if ($res) {
+				foreach ($res as $key => $val) {
 					$html .= "<tr><td>".$permission."</td><td>";
 					if (is_array($permission)) {
 						foreach ($permission as $k => $v) {
