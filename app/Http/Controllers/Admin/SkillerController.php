@@ -36,16 +36,6 @@ class SkillerController extends BaseController
      */
     public function show($id)
     {
-        $res = Skiller::all();
-        $res = $res->toArray();
-        foreach ($res as $key=>$val){
-            foreach ($val as $k=>$v){
-                dump($k.'--'.$v);
-            }
-        }
-        dd($res);
-
-
         $result = $this->service->show($id);
         return view(getThemeView('skiller.show'))->with($result);
     }

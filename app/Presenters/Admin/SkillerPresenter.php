@@ -126,16 +126,22 @@ Eof;
 //            }
 			$paraArray = explode(',',$para);
 			$res = Para::whereIn('id',$paraArray)->get();
+			$res = $res->toArray();
 			if ($res) {
 				foreach ($res as $key => $val) {
-					$html .= "<tr><td>".$permission."</td><td>";
-					if (is_array($permission)) {
-						foreach ($permission as $k => $v) {
-							$html .= <<<Eof
+					if (is_array($val)) {
+						foreach ($val as $k => $v) {
+							if($k == 'id'){
+								$html .= "<tr><td>".$val."</td><td>";
+							}
+							if($k == 'name'){
+								$html .= <<<Eof
 							<div class="col-md-4">
-	                        	<label> {$v['name']} </label>
+	                        	<label> {$v} </label>
 	                      	</div>
 Eof;
+							}
+
 						}
 					}
 					$html .= '</td></tr>';
