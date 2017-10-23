@@ -2,6 +2,8 @@
 
 return array (
   'uid' => '用户id',
+    'phone' => '用户手机号',
+    'cate_name' => '分类名',
     'para_id' => '规格ID',
   'introduce' => '服务介绍',
   'difference' => '特点',
