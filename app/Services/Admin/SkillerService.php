@@ -287,7 +287,7 @@ Eof
 	public function destroy($id)
 	{
 		try {
-			$result = UserRepositoryEloquent::delete(decodeId($id, $this->module));
+			$result = SkillerRepositoryEloquent::delete(decodeId($id, $this->module));
 			cacheClear();
 			flash_info($result,trans('common.destroy_success'),trans('common.destroy_error'));
 		} catch (Exception $e) {
