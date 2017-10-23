@@ -116,7 +116,7 @@ Eof;
 	public function showUserPara($para)
 	{
 		$html = '';
-		if (!$para->isEmpty()) {
+		if (!$para) {
 			// 将角色权限分组
 			$paraArray = [];
 //			foreach ($userPermissions as $v) {
