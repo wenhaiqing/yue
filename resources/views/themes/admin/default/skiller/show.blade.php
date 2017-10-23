@@ -66,7 +66,7 @@
             <div class="form-group">
               <label class="col-sm-2 control-label">{{trans('skiller.difference')}}</label>
               <div class="col-sm-10">
-                <p class="form-control-static">{{$skiller->difference}}</p>
+                <p class="form-control-static">{{$skiller->para_id}}</p>
               </div>
             </div>
               <div class="hr-line-dashed"></div>
