@@ -14,5 +14,13 @@ class Demand extends Model implements Transformable
 
     protected $fillable = ['uid','cate_id','para_id', 'validday', 'validtime', 'yuetime', 'needpara', 'sincerity'];
 
+    public function user(){
+        return $this->hasOne('App\User','id','uid');
+    }
+
+    public function cate()
+    {
+        return $this->hasOne('App\Models\Category','id','cate_id');
+    }
 
 }

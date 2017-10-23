@@ -3,6 +3,7 @@
 return array (
   'uid' => '用户id',
     'para_id' => '规格ID',
+    'para' => '所选参数',
   'cate_id' => '分类ID',
   'yuetime' => '预约时间',
   'validday' => '有效期',
