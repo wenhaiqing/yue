@@ -38,12 +38,12 @@ class SkillerController extends BaseController
     {
         $res = Skiller::all();
         $res = $res->toArray();
-        dd($res);
         foreach ($res as $key=>$val){
             foreach ($val as $k=>$v){
                 dump($k.'--'.$v);
             }
         }
+        dd($res);
 
 
         $result = $this->service->show($id);
