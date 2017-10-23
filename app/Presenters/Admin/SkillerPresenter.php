@@ -113,19 +113,20 @@ Eof;
 	 * @param  [type]                   $userPermissions [description]
 	 * @return [type]                                    [description]
 	 */
-	public function showUserPermissions($userPermissions)
+	public function showUserPara($para)
 	{
 		$html = '';
-		if (!$userPermissions->isEmpty()) {
+		if (!$para->isEmpty()) {
 			// 将角色权限分组
-			$permissionArray = [];
-			foreach ($userPermissions as $v) {
-                $temp = explode('.', $v->slug);
-                $permissionArray[$temp[0]][] = $v->toArray();
-            }
-			if ($permissionArray) {
-				foreach ($permissionArray as $key => $permission) {
-					$html .= "<tr><td>".$key."</td><td>";
+			$paraArray = [];
+//			foreach ($userPermissions as $v) {
+//                $temp = explode('.', $v->slug);
+//                $permissionArray[$temp[0]][] = $v->toArray();
+//            }
+			$paraArray = explode(',',$para);
+			if ($paraArray) {
+				foreach ($paraArray as $key => $permission) {
+					$html .= "<tr><td>".$permission."</td><td>";
 					if (is_array($permission)) {
 						foreach ($permission as $k => $v) {
 							$html .= <<<Eof

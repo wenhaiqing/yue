@@ -36,7 +36,6 @@ class SkillerController extends BaseController
     public function show($id)
     {
         $result = $this->service->show($id);
-        dump($result);
         return view(getThemeView('skiller.show'))->with($result);
     }
 

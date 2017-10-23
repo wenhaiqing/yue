@@ -69,6 +69,25 @@
                 <p class="form-control-static">{{$skiller->difference}}</p>
               </div>
             </div>
+              <div class="hr-line-dashed"></div>
+              <div class="form-group">
+                  <label class="col-sm-2 control-label">{{trans('user.permission')}}</label>
+                  <div class="col-sm-10">
+                      <div class="ibox float-e-margins">
+                          <table class="table table-bordered">
+                              <thead>
+                              <tr>
+                                  <th class="col-md-1 text-center">{{trans('role.module')}}</th>
+                                  <th class="col-md-10 text-center">{{trans('role.permission')}}</th>
+                              </tr>
+                              </thead>
+                              <tbody>
+                              {!! $skillerPresenter->showUserPara($skiller->para_id) !!}
+                              </tbody>
+                          </table>
+                      </div>
+                  </div>
+              </div>
 
 
             <div class="hr-line-dashed"></div>
