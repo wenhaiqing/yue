@@ -204,11 +204,9 @@ Eof
 	public function show($id)
 	{
 		try {
-			$user = UserRepositoryEloquent::with(['userPermissions', 'roles'])->find(decodeId($id, $this->module));
-			$permissions = $this->getAllPermissions();
-			$roles = $this->getAllRole();
-			dump($user->toArray());dump($permissions);dd($roles->toArray());
-			return compact('user', 'permissions', 'roles');
+			$user = SkillerRepositoryEloquent::with(['user', 'cate'])->find(decodeId($id, $this->module));
+			dd($user->toArray());
+			return compact('user');
 		} catch (Exception $e) {
 			flash(trans('common.find_error'), 'danger');
 			return redirect()->route($this->indexRoute);
