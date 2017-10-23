@@ -204,9 +204,8 @@ Eof
 	public function show($id)
 	{
 		try {
-			$user = SkillerRepositoryEloquent::with(['uid', 'cate_id'])->find(decodeId($id, $this->module));
-			dd($user->toArray());
-			return compact('user');
+			$skiller = SkillerRepositoryEloquent::with(['uid', 'cate_id'])->find(decodeId($id, $this->module));
+			return compact('skiller');
 		} catch (Exception $e) {
 			flash(trans('common.find_error'), 'danger');
 			return redirect()->route($this->indexRoute);
