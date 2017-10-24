@@ -145,15 +145,16 @@ Eof;
 
 	public function showUserPicture($picture)
 	{
-		$html = '<tr>';
+		$html = '';
 		if ($picture) {
 			$res = $picture->toArray();
 			if ($res) {
 				foreach ($res as $key => $val) {
+					$html .= '<tr>';
 					if (is_array($val)) {
 						foreach ($val as $k => $v) {
 							if($k == 'path'){
-								$html .= "<td><div class='col-md-3'><img style='height:300px;width:300px' src='".$v."'></div></td>";
+								$html .= "<td><img  src='".$v."'></td>";
 							}
 						}
 					}
