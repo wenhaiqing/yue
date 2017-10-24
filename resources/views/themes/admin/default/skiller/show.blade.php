@@ -91,7 +91,7 @@
 
               <div class="hr-line-dashed"></div>
               <div class="form-group">
-                  <label class="col-sm-2 control-label">{{trans('skiller.picture')}}</label>
+                  <label class="col-sm-2 control-label">{{trans('skiller.picture')}}{{dump($skiller->picture)}}</label>
                   <div class="col-sm-10">
                       <div class="ibox float-e-margins">
                           <table class="table table-bordered">
