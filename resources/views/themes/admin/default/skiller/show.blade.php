@@ -97,7 +97,6 @@
                           <table class="table table-bordered">
                               <thead>
                               <tr>
-                                  <th class="col-md-1 text-center">{{trans('skiller.picture')}}</th>
                               </tr>
                               </thead>
                               <tbody>
