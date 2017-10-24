@@ -119,7 +119,7 @@
                               </tr>
                               </thead>
                               <tbody>
-                              {!! $skillerPresenter->showUserVideo($skiller->video) !!}
+                              {!! dump($skillerPresenter->showUserVideo($skiller->video)) !!}
                               </tbody>
                           </table>
                       </div>

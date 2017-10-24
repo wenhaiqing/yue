@@ -177,6 +177,7 @@ Eof;
 		$html = '';
 		if ($video) {
 			$res = $video->toArray();
+			return $res;
 			if ($res) {
 				foreach ($res as $key => $val) {
 					if (is_array($val)) {
