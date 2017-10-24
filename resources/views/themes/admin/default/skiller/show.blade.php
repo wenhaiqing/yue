@@ -75,13 +75,7 @@
                   <div class="col-sm-10">
                       <div class="ibox float-e-margins">
                           <table class="table table-bordered">
-                              <thead>
-                              <tr>
-                              </tr>
-                              </thead>
-                              <tbody>
                               {!! $skillerPresenter->showUserPara($skiller->para_id) !!}
-                              </tbody>
                           </table>
                       </div>
                   </div>
