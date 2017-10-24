@@ -28,7 +28,7 @@ class Skiller extends Model implements Transformable
         return $this->hasMany('App\Models\Picture','sid');
     }
 
-    public function video()
+    public function videos()
     {
         return $this->hasMany('App\Models\Video','sid');
     }

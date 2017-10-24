@@ -71,7 +71,6 @@
             </div>
               <div class="hr-line-dashed"></div>
               <div class="form-group">
-                  {{dump($skiller->toArray())}}
                   <label class="col-sm-2 control-label">{{trans('skiller.para')}}</label>
                   <div class="col-sm-10">
                       <div class="ibox float-e-margins">
@@ -92,7 +91,7 @@
 
               <div class="hr-line-dashed"></div>
               <div class="form-group">
-                  <label class="col-sm-2 control-label">{{trans('skiller.picture')}}{{dump($skiller->picture)}}</label>
+                  <label class="col-sm-2 control-label">{{trans('skiller.picture')}}</label>
                   <div class="col-sm-10">
                       <div class="ibox float-e-margins">
                           <table class="table table-bordered">
@@ -116,11 +115,11 @@
                           <table class="table table-bordered">
                               <thead>
                               <tr>
-                                  <th class="col-md-1 text-center">{{trans('skiller.video')}}{{dump($skiller->video)}}</th>
+                                  <th class="col-md-1 text-center">{{trans('skiller.video')}}</th>
                               </tr>
                               </thead>
                               <tbody>
-                              {!! dump($skillerPresenter->showUserVideo($skiller->video)) !!}
+                              {!! $skillerPresenter->showUserVideo($skiller->videos) !!}
                               </tbody>
                           </table>
                       </div>
