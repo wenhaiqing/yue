@@ -187,6 +187,52 @@ Eof;
 		return $html;
 	}
 
+	public function showUserJob($job)
+	{
+		$html = '';
+		if ($job) {
+			$res = explode('|',$job);
+			if ($res) {
+				foreach ($res as $key => $val) {
+					$html .= '<tr>';
+					if ($val) {
+						$val = explode(',',$val);
+						foreach ($val as $k => $v) {
+							if($v){
+								$html .= "<td><div class='col-md-3'>".$v."</div></td>";
+							}
+						}
+					}
+					$html .= '</tr>';
+				}
+			}
+		}
+		return $html;
+	}
+
+	public function showUserPrize($prize)
+	{
+		$html = '';
+		if ($prize) {
+			$res = explode('|',$prize);
+			if ($res) {
+				foreach ($res as $key => $val) {
+					$html .= '<tr>';
+					if ($val) {
+						$val = explode(',',$val);
+						foreach ($val as $k => $v) {
+							if($v){
+								$html .= "<td><div class='col-md-3'>".$v."</div></td>";
+							}
+						}
+					}
+					$html .= '</tr>';
+				}
+			}
+		}
+		return $html;
+	}
+
 	public function showUserVideo($video)
 	{
 		$html = '';
