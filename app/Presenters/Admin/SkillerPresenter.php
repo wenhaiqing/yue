@@ -145,7 +145,7 @@ Eof;
 
 	public function showUserPicture($picture)
 	{
-		$html = '<tr>';
+		$html = '';
 		if ($picture) {
 			$res = $picture->toArray();
 			if ($res) {
@@ -160,7 +160,7 @@ Eof;
 
 				}
 			}
-			$html .= '</tr>';
+			$html .= '';
 		}
 		return $html;
 	}
