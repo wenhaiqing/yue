@@ -116,7 +116,7 @@ Eof;
 	 */
 	public function showUserPara($para)
 {
-	$html = '<tr>';
+	$html = '';
 	if ($para) {
 		// 将角色权限分组
 		$paraArray = [];
@@ -132,11 +132,11 @@ Eof;
 				if (is_array($val)) {
 					foreach ($val as $k => $v) {
 						if($k == 'name'){
-							$html .= "<td>".$v."</td>";
+							$html .= "<tr><td>".$v."</td></tr>";
 						}
 					}
 				}
-				$html .= '</tr>';
+				$html .= '';
 			}
 		}
 	}
