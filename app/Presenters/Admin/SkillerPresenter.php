@@ -131,20 +131,12 @@ Eof;
 			foreach ($res as $key => $val) {
 				if (is_array($val)) {
 					foreach ($val as $k => $v) {
-						if($k == 'id'){
-							$html .= "<tr><td>".$v."</td><td>";
-						}
 						if($k == 'name'){
-							$html .= <<<Eof
-							<div class="col-md-4">
-	                        	<label> {$v} </label>
-	                      	</div>
-Eof;
+							$html .= "<tr><td>".$v."</td>";
 						}
-
 					}
 				}
-				$html .= '</td></tr>';
+				$html .= '</tr>';
 			}
 		}
 	}

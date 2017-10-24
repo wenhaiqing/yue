@@ -77,8 +77,6 @@
                           <table class="table table-bordered">
                               <thead>
                               <tr>
-                                  <th class="col-md-1 text-center">{{trans('skiller.para_id')}}</th>
-                                  <th class="col-md-10 text-center">{{trans('skiller.para')}}</th>
                               </tr>
                               </thead>
                               <tbody>
