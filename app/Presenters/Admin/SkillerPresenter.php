@@ -166,16 +166,17 @@ Eof;
 
 	public function showUserEducation($education)
 	{
-		$html = '<tr>';
+		$html = '';
 		if ($education) {
 			$res = explode('|',$education);
 			if ($res) {
 				foreach ($res as $key => $val) {
+					$html .= '<tr>';
 					if ($val) {
 						$val = explode(',',$val);
 						foreach ($val as $k => $v) {
 							if($v){
-								$html .= "<td><div class='col-md-3'></div></td>";
+								$html .= "<td><div class='col-md-3'>".$v."</div></td>";
 							}
 						}
 					}
