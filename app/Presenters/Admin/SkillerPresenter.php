@@ -161,7 +161,7 @@ Eof;
 					if (is_array($val)) {
 						foreach ($val as $k => $v) {
 							if($k == 'path'){
-								$html .= "<td><div class='col-md-3'><img style='height:100px;width:100px' src='".$v."'></div></td>";
+								$html .= "<td><div class='col-md-3'><img style='height:200px;width:200px' src='".$v."'></div></td>";
 							}
 						}
 					}
