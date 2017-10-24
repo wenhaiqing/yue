@@ -116,14 +116,10 @@ Eof;
 	 */
 	public function showUserPara($para)
 {
-	$html = '';
+	$html = '<tr><td>';
 	if ($para) {
 		// 将角色权限分组
 		$paraArray = [];
-//			foreach ($userPermissions as $v) {
-//                $temp = explode('.', $v->slug);
-//                $permissionArray[$temp[0]][] = $v->toArray();
-//            }
 		$paraArray = explode(',',$para);
 		$res = Para::whereIn('id',$paraArray)->get();
 		$res = $res->toArray();
@@ -131,12 +127,19 @@ Eof;
 			foreach ($res as $key => $val) {
 				if (is_array($val)) {
 					foreach ($val as $k => $v) {
+//						if($k == 'id'){
+//							$html .= "<tr><td>".$v."</td><td>";
+//						}
 						if($k == 'name'){
-							$html .= "<tr><td>".$v."</td></tr>";
+							$html .= <<<Eof
+							<div class="col-md-4">
+	                        	<label> {$v} </label>
+	                      	</div>
+Eof;
 						}
 					}
 				}
-				$html .= '';
+				$html .= '</td></tr>';
 			}
 		}
 	}
