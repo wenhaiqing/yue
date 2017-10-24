@@ -40,6 +40,7 @@
               </a>
           </div>
         </div>
+          {{dump($skiller->toArray())}}
         <div class="ibox-content">
           <form class="form-horizontal">
             <div class="form-group">
