@@ -222,7 +222,7 @@ Eof;
 						$val = explode(',',$val);
 						foreach ($val as $k => $v) {
 							if($v){
-								$html .= "<td><div class='col-md-3'>".$v."</div></td>";
+								$html .= "<td><div class='col-md-4'>".$v."</div></td>";
 							}
 						}
 					}
