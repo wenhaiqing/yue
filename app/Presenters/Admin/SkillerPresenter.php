@@ -182,13 +182,13 @@ Eof;
 					if (is_array($val)) {
 						foreach ($val as $k => $v) {
 							if($k == 'path'){
-								$html .= "<tr><td><div class='col-md-3'><video width='352' height='264' controls autobuffer>
+								$html .= "<tr><td><video width='352' height='264' controls autobuffer>
     <source src='".$v."' type='video/mp4; codecs='avc1.42E01E, mp4a.40.2''></source>
-</video></div></td><td>";
+</video></td>";
 							}
 						}
 					}
-					$html .= '</td></tr>';
+					$html .= '</tr>';
 				}
 			}
 		}
