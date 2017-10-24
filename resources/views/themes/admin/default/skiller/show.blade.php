@@ -71,6 +71,7 @@
             </div>
               <div class="hr-line-dashed"></div>
               <div class="form-group">
+                  {{dump($skiller->toArray())}}
                   <label class="col-sm-2 control-label">{{trans('skiller.para')}}</label>
                   <div class="col-sm-10">
                       <div class="ibox float-e-margins">
