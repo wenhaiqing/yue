@@ -153,7 +153,7 @@ Eof;
 					if (is_array($val)) {
 						foreach ($val as $k => $v) {
 							if($k == 'path'){
-								$html .= "<td class='col-md-3'><img src='".$v."'></td>";
+								$html .= "<td><img src='".$v."'></td>";
 							}
 						}
 					}
