@@ -145,7 +145,7 @@ Eof;
 
 	public function showUserPicture($picture)
 	{
-		$html = '';
+		$html = '<tr>';
 		if ($picture) {
 			$res = $picture->toArray();
 			if ($res) {
@@ -153,18 +153,14 @@ Eof;
 					if (is_array($val)) {
 						foreach ($val as $k => $v) {
 							if($k == 'path'){
-								<<<Eof
-							<div class="col-md-4">
-	                        	<label> <img style='' src='".{$v}."'> </label>
-	                      	</div>
-Eof;
+								$html .= "<td><img style='width:300px;height:300px' src='".$v."'></td>";
 							}
 						}
 					}
 
 				}
 			}
-			$html .= '';
+			$html .= '</tr>';
 		}
 		return $html;
 	}
