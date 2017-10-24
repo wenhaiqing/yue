@@ -115,7 +115,7 @@
                           <table class="table table-bordered">
                               <thead>
                               <tr>
-                                  <th class="col-md-1 text-center">{{trans('skiller.video')}}</th>
+                                  <th class="col-md-1 text-center">{{trans('skiller.video')}}{{dump($skiller->video)}}</th>
                               </tr>
                               </thead>
                               <tbody>
