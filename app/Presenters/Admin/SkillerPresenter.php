@@ -164,6 +164,28 @@ Eof;
 		return $html;
 	}
 
+	public function showUserEducation($education)
+	{
+		$html = '<tr>';
+		if ($education) {
+			$res = explode('|',$education);
+			if ($res) {
+				foreach ($res as $key => $val) {
+					if ($val) {
+						$val = explode(',',$val);
+						foreach ($val as $k => $v) {
+							if($v){
+								$html .= "<td><div class='col-md-3'></div></td>";
+							}
+						}
+					}
+					$html .= '</tr>';
+				}
+			}
+		}
+		return $html;
+	}
+
 	public function showUserVideo($video)
 	{
 		$html = '';

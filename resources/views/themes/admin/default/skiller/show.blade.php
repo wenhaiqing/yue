@@ -71,6 +71,17 @@
             </div>
               <div class="hr-line-dashed"></div>
               <div class="form-group">
+                  <label class="col-sm-2 control-label">{{trans('skiller.education')}}</label>
+                  <div class="col-sm-10">
+                      <div class="ibox float-e-margins">
+                          <table class="table table-bordered">
+                              {!! $skillerPresenter->showUserEducation($skiller->education) !!}
+                          </table>
+                      </div>
+                  </div>
+              </div>
+              <div class="hr-line-dashed"></div>
+              <div class="form-group">
                   <label class="col-sm-2 control-label">{{trans('skiller.para')}}</label>
                   <div class="col-sm-10">
                       <div class="ibox float-e-margins">
