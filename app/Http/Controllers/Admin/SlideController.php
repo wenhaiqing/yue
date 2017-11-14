@@ -28,7 +28,7 @@ class SlideController extends Controller
         if (Cache::has(config('admin.global.cache.slideList'))) {
             $result = Cache::get(config('admin.global.cache.slideList'));
         }else{
-            $result = Picture::all()->toArray();
+            $result = Picture::where('sid','0')->all()->toArray();
             Cache::forever(config('admin.global.cache.slideList'),$result);
         }
         return view(getThemeView('slide.list'))->with(compact('result'));
