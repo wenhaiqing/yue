@@ -29,6 +29,8 @@ class RegisterController extends Controller
         $data['phone'] = $arr['phone'];
         $data['password'] = $arr['password'];
         $data['name'] = $this->str_rand();
+        $data['lon'] = $arr['lon'];
+        $data['lat'] = $arr['lat'];
         $result = $this->validatorcode($arr);
         if($result){
             $add = $this->service->apistore($data);
