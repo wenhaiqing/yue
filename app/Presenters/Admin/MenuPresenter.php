@@ -209,6 +209,9 @@ Eof;
 		$html = '';
 		if ($childMenu) {
 			foreach ($childMenu as $v) {
+                if (!haspermission($v['slug'])) {
+                    continue;
+                }
 				$icon = $v['icon'] ? '<i class="'.$v['icon'].'"></i>':'';
 				$html .= '<li class="'.active_class(if_uri_pattern(explode(',',$v['active'])),'active').'"><a href="'.url($v['url']).'">'.$icon.$v['name'].'</a></li>';
 			}
