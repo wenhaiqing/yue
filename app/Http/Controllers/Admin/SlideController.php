@@ -108,7 +108,7 @@ class SlideController extends Controller
     }
 
     /**
-     * 清除分类缓存
+     * 清除幻灯片缓存
      * @author wenhaiqing
      * @date   2017-08-01T11:03:45+0800
      * @return [type]                   [description]

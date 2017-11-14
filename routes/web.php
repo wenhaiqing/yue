@@ -1,5 +1,6 @@
 <?php
 
+use Illuminate\Support\Facades\Redis;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -13,6 +14,17 @@
 
 Route::get('/', function () {
     return view('welcome');
+});
+
+Route::get('/socket',function(){
+    $data = [
+        'name' => 'event',
+        'data' => [
+            'name' => 'jelly',
+        ],
+    ];
+    Redis::publish('test-channel',json_encode($data));
+    return view('socket');
 });
 
 Auth::routes();
