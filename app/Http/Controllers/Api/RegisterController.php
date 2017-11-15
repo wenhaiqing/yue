@@ -6,6 +6,7 @@
  * Time: 15:22
  */
 namespace App\Http\Controllers\Api;
+use App\helpers\GeoHash;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Services\Admin\UserService;
@@ -15,10 +16,12 @@ use Illuminate\Support\Facades\Auth;
 class RegisterController extends Controller
 {
     protected $service;
+    protected $geo;
 
-    public function __construct(UserService $service)
+    public function __construct(UserService $service,GeoHash $geoHash)
     {
         $this->service = $service;
+        $this->geo = $geoHash;
     }
     /*
      * APP注册方法
@@ -31,6 +34,7 @@ class RegisterController extends Controller
         $data['name'] = $this->str_rand();
         $data['lon'] = $arr['lon'];
         $data['lat'] = $arr['lat'];
+        $data['geohash'] = $this->geo->encode($arr['lat'],$arr['lon']);
         $result = $this->validatorcode($arr);
         if($result){
             $add = $this->service->apistore($data);
