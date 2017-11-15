@@ -33,7 +33,7 @@ class HomeController extends Controller
         if (Cache::has(config('admin.global.cache.slideList'))) {
             $slide = Cache::get(config('admin.global.cache.slideList'));
         }else{
-            $slide = Picture::where('sid','0')->all()->toArray();
+            $slide = Picture::where('sid','0')->get()->toArray();
             Cache::forever(config('admin.global.cache.slideList'),$slide);
         }
 
