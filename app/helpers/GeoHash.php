@@ -55,7 +55,7 @@ class GeoHash
         $err = 45;
         while($err > $plat) {
             $latbits++;
-            $err/ = 2;
+            $err /= 2;
         }
 
         $plong = $this->precision($long);
