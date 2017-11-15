@@ -7,6 +7,8 @@ use App\Http\Controllers\Controller;
 use App\Models\Picture;
 use App\Models\Topline;
 use App\Models\Category;
+use App\helpers\GeoHash;
+use App\User;
 use Cache;
 
 class HomeController extends Controller
@@ -36,5 +38,11 @@ class HomeController extends Controller
         $data['slide'] = $slide;
         $data['category'] = $category;
         return response()->json($data);
+    }
+
+    public function test()
+    {
+
+
     }
 }
