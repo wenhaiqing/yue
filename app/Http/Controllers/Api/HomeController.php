@@ -7,7 +7,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Picture;
 use App\Models\Topline;
 use App\Models\Category;
-use App\helpers\GeoHash;
+use App\Models\Geohash;
 use App\User;
 use Cache;
 
@@ -42,7 +42,8 @@ class HomeController extends Controller
 
     public function test()
     {
-
+        $data = Geohash::all();
+        dd($data);
 
     }
 }

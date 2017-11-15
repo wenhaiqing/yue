@@ -11,7 +11,7 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        $this->call(GeohashTableSeeder::class);
+        $this->call(GeoTableSeeder::class);
 //        $this->call(RoleTableSeeder::class);
 //        $this->call(MenuTableSeeder::class);
 //        $this->call(PermissionTableSeeder::class);

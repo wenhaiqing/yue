@@ -11,6 +11,13 @@ class GeohashTableSeeder extends Seeder
      */
     public function run()
     {
+
+        factory('App\Models\Geohash', 1)->create([
+            'uid' => "10",
+            'lat' => '37.81408715269776',
+            'lon' => "112.5626668351634",
+        ]);
+
         Geohash::create([
         	'uid' => "10",
 	        'lat' => '37.81408715269776',
