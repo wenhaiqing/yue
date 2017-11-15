@@ -42,7 +42,7 @@ Route::group(['namespace' => 'Api'],function ($router)
     $router->get('/home','HomeController@index');
     $router->post('/logout','RegisterController@logout');
     $router->post('/jpush','JpushController@index');
-    $router->post('/test','HomeController@test');
+    $router->get('/test','HomeController@test');
 
 
 });
